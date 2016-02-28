@@ -38,6 +38,7 @@ public class MainGUI{
       newGame = new JMenuItem("New Game");
       newGame.addActionListener(al);
       aboutMenu = new JMenuItem("About");
+      aboutMenu.addActionListener(al);
       
       exitMenu = new JMenuItem("Exit");
       exitMenu.addActionListener(al);
