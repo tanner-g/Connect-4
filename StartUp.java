@@ -35,14 +35,18 @@ public class StartUp extends JFrame
       }
       
       labelOne = new JLabel(new ImageIcon(image));
-      frame.add(labelOne);      
+      labelOne.setLayout(new BorderLayout());
       
-      /*panel = new JPanel(new FlowLayout());
+      panel = new JPanel(new FlowLayout());
+            
       start = new JButton("Start");
       panel.add(start);
       about = new JButton("About");
       panel.add(about);
-      frame.add(panel);*/
+      
+      labelOne.add(panel, BorderLayout.SOUTH);
+      
+      frame.add(labelOne);
       
       frame.setVisible(true);  
    }
