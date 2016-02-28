@@ -17,7 +17,7 @@ public class MainGUI{
    private JMenuBar menuBar;
    private JMenu fileMenu;
    private JMenu helpMenu;
-   private JMenu aboutMenu;
+   private JMenuItem aboutMenu;
    private JMenuItem newGame;
    private JMenuItem exitMenu;
    private JMenuItem instructions;
@@ -37,25 +37,29 @@ public class MainGUI{
       fileMenu = new JMenu("File");
       newGame = new JMenuItem("New Game");
       newGame.addActionListener(al);
+      aboutMenu = new JMenuItem("About");
+      
       exitMenu = new JMenuItem("Exit");
       exitMenu.addActionListener(al);
       fileMenu.add(newGame);
+      fileMenu.add(aboutMenu);
       fileMenu.add(exitMenu);
       
       helpMenu = new JMenu("Help");
       instructions = new JMenuItem("Instructions");
       instructions.addActionListener(al);
       helpMenu.add(instructions);
-      aboutMenu = new JMenu("About");
-      aboutMenu.addActionListener(al);     
       
+           
       menuBar.add(fileMenu);
-      menuBar.add(helpMenu);
-      menuBar.add(aboutMenu);
+      menuBar.add(helpMenu); 
       
       frame.add(menuBar, BorderLayout.NORTH);
       
       frame.setVisible(true);
+   }
+   public void exitProgram(){
+      System.exit(0);
    }
    
    class EventListener extends JPanel implements ActionListener{
@@ -65,11 +69,18 @@ public class MainGUI{
       
       public void actionPerformed(ActionEvent e){
          String actionString = e.getActionCommand();
-            if(actionString.equals("xxx")){
+            if(actionString.equals("New Game")){
             }
-            else if(actionString.equals("")){
+            else if(actionString.equals("Exit")){
+               exitProgram();
+            }
+            else if(actionString.equals("Instructions")){
             
             }
+            else if(actionString.equals("About")){
+            JOptionPane.showMessageDialog(frame, "put text here.");
+            }
+           
       }
 
    
