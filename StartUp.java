@@ -3,8 +3,9 @@ import java.awt.*;
 import java.util.*;
 import java.io.*;
 import javax.imageio.*;
+import java.awt.event.*;
 
-public class StartUp extends JFrame
+public class StartUp extends JFrame implements ActionListener
 {
    private Image image = null;
    private JLabel labelOne = null;
@@ -40,8 +41,10 @@ public class StartUp extends JFrame
       panel = new JPanel(new FlowLayout());
             
       start = new JButton("Start");
+      start.addActionListener(this);
       panel.add(start);
       about = new JButton("About");
+      about.addActionListener(this);
       panel.add(about);
       
       labelOne.add(panel, BorderLayout.SOUTH);
@@ -50,4 +53,16 @@ public class StartUp extends JFrame
       
       frame.setVisible(true);  
    }
+   
+   public void actionPerformed(ActionEvent ae)
+   {
+      if(ae.getActionCommand().equals("Start"));
+      {
+         //JOptionPane.showMessageDialog(null, "put cool here.");
+      }
+      if(ae.getActionCommand().equals("About"));
+      {
+         //JOptionPane.showMessageDialog(null, "put text here.");
+      }
+   }   
 }  
