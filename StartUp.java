@@ -58,11 +58,11 @@ public class StartUp extends JFrame implements ActionListener
    {
       if(ae.getActionCommand().equals("Start"));
       {
-         //JOptionPane.showMessageDialog(null, "put cool here.");
+         JOptionPane.showMessageDialog(null, "put cool here.");
       }
       if(ae.getActionCommand().equals("About"));
       {
-         //JOptionPane.showMessageDialog(null, "put text here.");
+         JOptionPane.showMessageDialog(null, "put text here.");
       }
    }   
 }  
