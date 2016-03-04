@@ -43,9 +43,6 @@ public class StartUp extends JFrame implements ActionListener
       start = new JButton("Start");
       start.addActionListener(this);
       panel.add(start);
-      about = new JButton("About");
-      about.addActionListener(this);
-      panel.add(about);
       
       labelOne.add(panel, BorderLayout.SOUTH);
       
@@ -58,11 +55,7 @@ public class StartUp extends JFrame implements ActionListener
    {
       if(ae.getActionCommand().equals("Start"));
       {
-         JOptionPane.showMessageDialog(null, "put cool here.");
-      }
-      if(ae.getActionCommand().equals("About"));
-      {
-         JOptionPane.showMessageDialog(null, "put text here.");
+         new MainGUI();
       }
    }   
 }  
