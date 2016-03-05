@@ -27,15 +27,9 @@ public class StartUp extends JFrame implements ActionListener
       frame.setResizable(false);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-      try
-      {
-         image = ImageIO.read(new File("startup.jpg"));
-      }
-      catch(IOException ioe)
-      {
-      }
+      Icon aPic = new ImageIcon("startup.jpg");
       
-      labelOne = new JLabel(new ImageIcon(image));
+      labelOne = new JLabel(aPic);
       labelOne.setLayout(new BorderLayout());
       
       panel = new JPanel(new FlowLayout());
