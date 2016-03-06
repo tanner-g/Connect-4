@@ -142,13 +142,10 @@ public class MainGUI {
                 
             }
             else if(actionString.equals("6")) {
-               
-            }
-            else if(actionString.equals("7")) {
-               
             }
         }
-    }
+       }
+
     class Board extends JPanel{
          public Board(){
             
