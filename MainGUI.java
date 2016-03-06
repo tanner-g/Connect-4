@@ -19,14 +19,16 @@ public class MainGUI {
     private JMenuBar menuBar;
     private JMenu fileMenu;
     private JMenu helpMenu;
-    private JMenuItem aboutMenu;
+
     private JMenuItem newGame;
     private JMenuItem exitMenu;
     private JMenuItem instructions;
-
+    private JPanel panel;
+    private static final int PANNEL_WIDTH = 725;
+    private static final int PANNEL_HEIGHT = 650; 
     public MainGUI() {
         frame = new JFrame();
-        frame.setSize(800, 800);
+        frame.setSize(PANNEL_WIDTH, PANNEL_HEIGHT);
         frame.setTitle("Connect 4");
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,16 +37,13 @@ public class MainGUI {
         EventListener al = new EventListener();
 
         menuBar = new JMenuBar();
-
         fileMenu = new JMenu("File");
         newGame = new JMenuItem("New Game");
         newGame.addActionListener(al);
-        aboutMenu = new JMenuItem("About");
-        aboutMenu.addActionListener(al);
         exitMenu = new JMenuItem("Exit");
         exitMenu.addActionListener(al);
         fileMenu.add(newGame);
-        fileMenu.add(aboutMenu);
+  
         fileMenu.add(exitMenu);
 
         helpMenu = new JMenu("Help");
@@ -55,9 +54,11 @@ public class MainGUI {
 
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
-
+        panel = new JPanel(new BorderLayout());
+        
+        panel.add(new Board());
         frame.add(menuBar, BorderLayout.NORTH);
-
+        frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
@@ -72,9 +73,7 @@ public class MainGUI {
     class EventListener extends JPanel implements ActionListener {
         private String instructionsDialog = "Game Description:\n\tConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
         public EventListener() {
-
         }
-
         public void actionPerformed(ActionEvent e) {
             String actionString = e.getActionCommand();
             if (actionString.equals("New Game")) {
@@ -85,13 +84,23 @@ public class MainGUI {
             } else if (actionString.equals("About")) {
                 JOptionPane.showMessageDialog(frame, "put text here.");
             }
-
         }
-
-
     }
-
-    class Board extends JPanel {
+    class Board extends JPanel{
+         public Board(){
+            
+         }
+       
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+              for(int i = 100; i<=600; i+=100){
+               g.drawLine(i,0, i, PANNEL_HEIGHT);
+            }
+            for(int i = 0; i<=500; i+=100){
+               g.drawLine(0,i,PANNEL_WIDTH,i);
+            }
+                 
+      }
 
     }
 
