@@ -1,17 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.io.*;
-import javax.imageio.*;
 import java.awt.event.*;
 
 public class StartUp extends JFrame implements ActionListener
 {
-   private Image image = null;
-   private JLabel labelOne = null;
    private JButton start = null;
-   private JButton about = null;
    private JPanel panel = null;
+   private JPanel panelTwo = null;
+   private Icon aPic = new ImageIcon("startup.jpg");
       
    public static void main(String [] args)
    {
@@ -21,28 +18,36 @@ public class StartUp extends JFrame implements ActionListener
    public StartUp()
    {
       JFrame frame = new JFrame();
-      frame.setSize(800, 800);
+      frame.setSize(700, 600);
       frame.setTitle("Connect 4");
       frame.setLocationRelativeTo(null);
       frame.setResizable(false);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-      Icon aPic = new ImageIcon("startup.jpg");
-      
-      labelOne = new JLabel(aPic);
-      labelOne.setLayout(new BorderLayout());
-      
-      panel = new JPanel(new FlowLayout());
             
+      panel = new JPanel(new BorderLayout());
+      panel.add(new StartUpInner());
+      frame.add(panel);
+            
+      panelTwo = new JPanel(new FlowLayout());
       start = new JButton("Start");
       start.addActionListener(this);
-      panel.add(start);
-      
-      labelOne.add(panel, BorderLayout.SOUTH);
-      
-      frame.add(labelOne);
-      
+      panelTwo.add(start);
+      frame.add(panelTwo, BorderLayout.SOUTH);
+                  
       frame.setVisible(true);  
+   }
+   
+   class StartUpInner extends JPanel
+   {
+      public StartUpInner()
+      {
+      }
+      
+      protected void paintComponent(Graphics g)
+      {
+         super.paintComponent(g);
+         aPic.paintIcon(this, g, 0, 0); 
+      }
    }
    
    public void actionPerformed(ActionEvent ae)
