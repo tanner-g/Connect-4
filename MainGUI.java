@@ -31,8 +31,8 @@ public class MainGUI {
     private JButton colButton5;
     private JButton colButton6;
     private JButton colButton7;
-    private static final int PANNEL_WIDTH = 725;
-    private static final int PANNEL_HEIGHT = 650;
+    private static final int PANNEL_WIDTH = 700;
+    private static final int PANNEL_HEIGHT = 670;
     
     private ArrayList col1 = new ArrayList();
     private ArrayList col2 = new ArrayList();
@@ -42,11 +42,16 @@ public class MainGUI {
     private ArrayList col6 = new ArrayList();
     private ArrayList col7 = new ArrayList();
     
+    private Icon theBoard = new ImageIcon("grid.png");
+    private Icon yellow = new ImageIcon("yellowpiece.png");
+    private Icon red = new ImageIcon("redpiece.png");
+        
     public MainGUI() {
         frame = new JFrame();
         frame.setSize(PANNEL_WIDTH, PANNEL_HEIGHT);
         frame.setTitle("Connect 4");
         frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -69,7 +74,7 @@ public class MainGUI {
         menuBar.add(fileMenu);
         menuBar.add(helpMenu);
         
-        buttonPanel = new JPanel(new FlowLayout(0,50,0));
+        buttonPanel = new JPanel(new FlowLayout(0,23,0));
          colButton1 = new JButton("1");
          colButton2 = new JButton("2");
          colButton3 = new JButton("3");
@@ -127,7 +132,8 @@ public class MainGUI {
                 JOptionPane.showMessageDialog(frame, instructionsDialog);
             }
             else if(actionString.equals("1")) {
-               
+               //panel.add(new YellowMove());
+               //frame.add(panel);
             }
             else if(actionString.equals("2")) {
                 
@@ -158,10 +164,19 @@ public class MainGUI {
             for(int i = 0; i<=500; i+=100){
                g.drawLine(0,i,PANNEL_WIDTH,i);
             }
-                 
+            
+            theBoard.paintIcon(this, g, 0, 0); 
       }
+      
 
     }
-
-
+    
+    /*class YellowMove extends JPanel
+    {
+       protected void paintComponent(Graphics g) 
+       {
+          super.paintComponent(g);
+          yellow.paintIcon(this, g, 0, 1); 
+       }       
+    }*/
 }
