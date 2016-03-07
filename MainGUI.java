@@ -132,8 +132,6 @@ public class MainGUI {
                 JOptionPane.showMessageDialog(frame, instructionsDialog);
             }
             else if(actionString.equals("1")) {
-               //panel.add(new YellowMove());
-               //frame.add(panel);
             }
             else if(actionString.equals("2")) {
                 
@@ -167,16 +165,5 @@ public class MainGUI {
             
             theBoard.paintIcon(this, g, 0, 0); 
       }
-      
-
     }
-    
-    /*class YellowMove extends JPanel
-    {
-       protected void paintComponent(Graphics g) 
-       {
-          super.paintComponent(g);
-          yellow.paintIcon(this, g, 0, 1); 
-       }       
-    }*/
 }
