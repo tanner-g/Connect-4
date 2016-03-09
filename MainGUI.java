@@ -23,6 +23,7 @@ public class MainGUI
    private JMenuItem instructions;
    private JPanel mainPanel;
    private JPanel panel;
+   private JPanel panelTwo;
    private JPanel buttonPanel;
    private JButton colButton1;
    private JButton colButton2;
@@ -31,6 +32,11 @@ public class MainGUI
    private JButton colButton5;
    private JButton colButton6;
    private JButton colButton7;
+   private JLabel playerOne;
+   private JLabel playerTwo;
+   private static String finalPlayerOne = null;
+   private static String finalPlayerTwo = null;
+   private int howManyWins = 0;
    private boolean keepGoing = true;
    private int chipMovement = 0;
    private int redCounter = 0;
@@ -39,7 +45,7 @@ public class MainGUI
    private boolean isRedChip = false;
    private static final int CHIP_MAX = 600;
    private static final int PANNEL_WIDTH = 700;
-   private static final int PANNEL_HEIGHT = 670;
+   private static final int PANNEL_HEIGHT = 680;
     
    private ArrayList<Integer> col1 = new ArrayList<Integer>();
    /*private ArrayList col2 = new ArrayList();
@@ -54,14 +60,16 @@ public class MainGUI
    private Icon theBoard = new ImageIcon("grid.png");
    private Icon yellowChip = new ImageIcon("yellowpiece.png");
    private Icon redChip = new ImageIcon("redpiece.png");
-        
-   public MainGUI()
+ 
+   public MainGUI(String _playerOne, String _playerTwo)
    {
+      finalPlayerOne = _playerOne;
+      finalPlayerTwo = _playerTwo;
       frame = new JFrame();
       frame.setSize(PANNEL_WIDTH, PANNEL_HEIGHT);
       frame.setTitle("Connect 4");
       frame.setLayout(new BorderLayout());
-      frame.setResizable(false);
+      frame.setResizable(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setLocationRelativeTo(null);
 
@@ -110,10 +118,18 @@ public class MainGUI
       //thread = new Thread(new Board());
         
       panel.add(new Board(), BorderLayout.CENTER);
+      
+      panelTwo = new JPanel(new GridLayout(1, 2));
+     
+      playerOne = new JLabel(finalPlayerOne + ":     " + howManyWins);
+      panelTwo.add(playerOne);
+      playerTwo = new JLabel(finalPlayerTwo + ":     " + howManyWins);
+      panelTwo.add(playerTwo);
         
       mainPanel = new JPanel(new BorderLayout());
       mainPanel.add(buttonPanel, BorderLayout.NORTH);
       mainPanel.add(panel,BorderLayout.CENTER);
+      mainPanel.add(panelTwo,BorderLayout.SOUTH);
       frame.add(menuBar, BorderLayout.NORTH);
       frame.add(mainPanel, BorderLayout.CENTER);       
         
@@ -122,7 +138,7 @@ public class MainGUI
 
    public static void main(String[] args)
    {
-      MainGUI game = new MainGUI();
+      MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo);
    }
 
    public void exitProgram()
@@ -157,7 +173,7 @@ public class MainGUI
          }
          else if(actionString.equals("1"))
          {
-            repaint(); 
+            //repaint(); 
          }
          else if(actionString.equals("2"))
          {       
