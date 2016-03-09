@@ -31,8 +31,14 @@ public class MainGUI {
     private JButton colButton5;
     private JButton colButton6;
     private JButton colButton7;
+    private boolean keepGoing = true;
+    private int chipMovement = 0;
+    private int redCounter = 0;
+    private int yellowCounter = 0;
     private static final int PANNEL_WIDTH = 700;
     private static final int PANNEL_HEIGHT = 670;
+    private static final boolean IS_YELLOW_CHIP = false;
+    private static final boolean IS_RED_CHIP = false;
     
     private ArrayList col1 = new ArrayList();
     private ArrayList col2 = new ArrayList();
@@ -43,8 +49,8 @@ public class MainGUI {
     private ArrayList col7 = new ArrayList();
     
     private Icon theBoard = new ImageIcon("grid.png");
-    private Icon yellow = new ImageIcon("yellowpiece.png");
-    private Icon red = new ImageIcon("redpiece.png");
+    private Icon yellowChip = new ImageIcon("yellowpiece.png");
+    private Icon redChip = new ImageIcon("redpiece.png");
         
     public MainGUI() {
         frame = new JFrame();
@@ -102,8 +108,17 @@ public class MainGUI {
         mainPanel.add(buttonPanel, BorderLayout.NORTH);
         mainPanel.add(panel,BorderLayout.CENTER);
         frame.add(menuBar, BorderLayout.NORTH);
-        frame.add(mainPanel, BorderLayout.CENTER);
-        frame.setVisible(true);
+        frame.add(mainPanel, BorderLayout.CENTER);       
+        new Thread(new Board()).start();
+        frame.setVisible(true); 
+        
+        try
+        {
+           Thread.currentThread().sleep(1000);
+        }
+        catch(InterruptedException ie)
+        {
+        }        
     }
 
     public static void main(String[] args) {
@@ -130,6 +145,7 @@ public class MainGUI {
             }
             else if (actionString.equals("Instructions")) {
                 JOptionPane.showMessageDialog(frame, instructionsDialog);
+                
             }
             else if(actionString.equals("1")) {
             }
@@ -150,20 +166,47 @@ public class MainGUI {
         }
        }
 
-    class Board extends JPanel{
-         public Board(){
+    class Board extends JPanel implements Runnable{
+                           
+     protected void paintComponent(Graphics g) {
+         super.paintComponent(g);
+           for(int i = 100; i<=600; i+=100){
+            g.drawLine(i,0, i, PANNEL_HEIGHT);
+         }
+         for(int i = 0; i<=500; i+=100){
+            g.drawLine(0,i,PANNEL_WIDTH,i);
+         }
             
-         }       
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-              for(int i = 100; i<=600; i+=100){
-               g.drawLine(i,0, i, PANNEL_HEIGHT);
+         theBoard.paintIcon(this, g, 0, 0);
+         yellowChip.paintIcon(this, g, 0, chipMovement);
+      }         
+
+      public Board(){
+            
+      }       
+      
+      public void run()
+      {                 
+         
+         while(keepGoing)
+         {
+            try
+            {  
+               Thread.currentThread().sleep(1000);
+               chipMovement += 100;
+               Thread.currentThread().sleep(1000);
+               repaint();                 
             }
-            for(int i = 0; i<=500; i+=100){
-               g.drawLine(0,i,PANNEL_WIDTH,i);
+            catch(InterruptedException ie)
+            {
             }
             
-            theBoard.paintIcon(this, g, 0, 0);
+            if(chipMovement == 500)
+            {
+               keepGoing = false;
+            }
+         }
       }
+      
     }
 }
