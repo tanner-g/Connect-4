@@ -163,7 +163,7 @@ public class MainGUI {
                g.drawLine(0,i,PANNEL_WIDTH,i);
             }
             
-            theBoard.paintIcon(this, g, 0, 0); 
+            theBoard.paintIcon(this, g, 0, 0);
       }
     }
 }
