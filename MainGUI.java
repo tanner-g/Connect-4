@@ -35,18 +35,22 @@ public class MainGUI {
     private int chipMovement = 0;
     private int redCounter = 0;
     private int yellowCounter = 0;
+    private boolean isYellowChip = false;
+    private boolean isRedChip = false;
+    private static final int CHIP_MAX = 600;
     private static final int PANNEL_WIDTH = 700;
     private static final int PANNEL_HEIGHT = 670;
-    private static final boolean IS_YELLOW_CHIP = false;
-    private static final boolean IS_RED_CHIP = false;
     
-    private ArrayList col1 = new ArrayList();
-    private ArrayList col2 = new ArrayList();
+    private ArrayList<Integer> col1 = new ArrayList<Integer>();
+    /*private ArrayList col2 = new ArrayList();
     private ArrayList col3 = new ArrayList();
     private ArrayList col4 = new ArrayList();
     private ArrayList col5 = new ArrayList();
     private ArrayList col6 = new ArrayList();
-    private ArrayList col7 = new ArrayList();
+    private ArrayList col7 = new ArrayList();*/
+    
+    private Thread thread;
+ 
     
     private Icon theBoard = new ImageIcon("grid.png");
     private Icon yellowChip = new ImageIcon("yellowpiece.png");
@@ -61,7 +65,7 @@ public class MainGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        EventListener al = new EventListener();
+        Board al = new Board();
 
         menuBar = new JMenuBar();
         fileMenu = new JMenu("File");
@@ -102,23 +106,18 @@ public class MainGUI {
          buttonPanel.add(colButton5);
          buttonPanel.add(colButton6);
          buttonPanel.add(colButton7);
-       panel = new JPanel(new BorderLayout());
-        panel.add(new Board());
+        panel = new JPanel(new BorderLayout());
+        //thread = new Thread(new Board());
+        
+        panel.add(new Board(), BorderLayout.CENTER);
+        
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(buttonPanel, BorderLayout.NORTH);
         mainPanel.add(panel,BorderLayout.CENTER);
         frame.add(menuBar, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);       
-        new Thread(new Board()).start();
-        frame.setVisible(true); 
         
-        try
-        {
-           Thread.currentThread().sleep(1000);
-        }
-        catch(InterruptedException ie)
-        {
-        }        
+        frame.setVisible(true);       
     }
 
     public static void main(String[] args) {
@@ -129,14 +128,19 @@ public class MainGUI {
         System.exit(0);
     }
 
-    class EventListener extends JPanel implements ActionListener {
-        private String instructionsDialog = "Game Description:\n\tConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
-        public EventListener() {
-        }
-       /* public void addPiece(String arrayListName){
-            arrayListName.add();
-        }*/
-        public void actionPerformed(ActionEvent e) {
+
+
+    class Board extends JPanel implements ActionListener, Runnable{
+            private int counter = 0;
+     private String instructionsDialog = "Game Description:\n\tConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
+
+     private int colNumber;                 
+    
+     public Board(){
+        
+            
+      }
+      public void actionPerformed(ActionEvent e) {
             String actionString = e.getActionCommand();
             if (actionString.equals("New Game")) {
             }
@@ -148,6 +152,8 @@ public class MainGUI {
                 
             }
             else if(actionString.equals("1")) {
+               
+              
             }
             else if(actionString.equals("2")) {
                 
@@ -164,10 +170,9 @@ public class MainGUI {
             else if(actionString.equals("6")) {
             }
         }
-       }
 
-    class Board extends JPanel implements Runnable{
-                           
+      
+      
      protected void paintComponent(Graphics g) {
          super.paintComponent(g);
            for(int i = 100; i<=600; i+=100){
@@ -178,13 +183,57 @@ public class MainGUI {
          }
             
          theBoard.paintIcon(this, g, 0, 0);
-         yellowChip.paintIcon(this, g, 0, chipMovement);
-      }         
-
-      public Board(){
+         
+         if(isYellowChip == true)
+         {
+            yellowChip.paintIcon(this,g, counter, addYellowChip());
+            counter++;
             
-      }       
+         }
+         else if(isRedChip == true)
+         {
+            redChip.paintIcon(this,g, counter, addRedChip());
+            counter++;
+            
+         }    
+         else
+         {
+            System.err.println("Error: no chip placed");
+         } 
+             
+      }
+      public int addYellowChip()
+      {
+         isYellowChip = true;
+         isRedChip = false;
+         
+         if(isYellowChip == true)
+         {
+            counter += 100;
+            return CHIP_MAX - counter;
+         }
+         else
+         {
+            return -1;
+         }
+      } 
       
+      public int addRedChip()
+      {
+         isYellowChip = false;
+         isRedChip = true;
+         
+         if(isRedChip == true)
+         {
+            counter += 100;
+            return CHIP_MAX - counter;
+         }
+         else
+         {
+            return -1;
+         }
+      }       
+
       public void run()
       {                 
          
@@ -206,7 +255,10 @@ public class MainGUI {
                keepGoing = false;
             }
          }
-      }
+      }       
+      
+     
+        
       
     }
-}
+   }
