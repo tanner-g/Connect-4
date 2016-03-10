@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
-public class MainGUI 
+public class MainGUI
 {
    private JFrame frame;
    private JMenuBar menuBar;
@@ -41,26 +41,26 @@ public class MainGUI
    private int chipMovement = 0;
    private int redCounter = 0;
    private int yellowCounter = 0;
-   private boolean isYellowChip = false;
-   private boolean isRedChip = false;
+   private boolean isYellowChip = false; //player two should be yellow
+   private boolean isRedChip = true;  //player one should be red
    private static final int CHIP_MAX = 600;
-   private static final int PANNEL_WIDTH = 700;
-   private static final int PANNEL_HEIGHT = 680;
-    
-   private ArrayList<Integer> col1 = new ArrayList<Integer>();
-   /*private ArrayList col2 = new ArrayList();
-   private ArrayList col3 = new ArrayList();
-   private ArrayList col4 = new ArrayList();
-   private ArrayList col5 = new ArrayList();
-   private ArrayList col6 = new ArrayList();
-   private ArrayList col7 = new ArrayList();*/
+   private static final int PANNEL_WIDTH = 715;
+   private static final int PANNEL_HEIGHT = 700;
     
    private Thread thread;
  
    private Icon theBoard = new ImageIcon("grid.png");
    private Icon yellowChip = new ImageIcon("yellowpiece.png");
    private Icon redChip = new ImageIcon("redpiece.png");
- 
+   
+   private String[][] gamePlay = new String[][]
+      {{"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"}};
+   
    public MainGUI(String _playerOne, String _playerTwo)
    {
       finalPlayerOne = _playerOne;
@@ -92,7 +92,7 @@ public class MainGUI
       menuBar.add(fileMenu);
       menuBar.add(helpMenu);
         
-      buttonPanel = new JPanel(new FlowLayout(0,23,0));
+      buttonPanel = new JPanel(new GridLayout(0,7));
       colButton1 = new JButton("1");
       colButton2 = new JButton("2");
       colButton3 = new JButton("3");
@@ -173,7 +173,11 @@ public class MainGUI
          }
          else if(actionString.equals("1"))
          {
-            //repaint(); 
+
+            gamePlay[0][1] = "r";
+            //counter++;           
+                        
+            revalidate();
          }
          else if(actionString.equals("2"))
          {       
@@ -208,13 +212,19 @@ public class MainGUI
             
          theBoard.paintIcon(this, g, 0, 0);
          
-         /*for(int i = 0; i < arraysize(); i++)
+        /* for(int i = 0; i < gamePlay.length; i++)
          {
-            for(int j = 0; j < arraysize(); j++)
+            for(int j = 0; j < gamePlay.length; j++)
             {
-               i, j
+               gamePlay[0][1].paintIcon(this, g , 0, 1);
             }
          }*/
+        
+            if(gamePlay[0][1] == "r"){
+               redChip.paintIcon(this, g, 1, 1); 
+                         
+            }         
+         /*
          
          if(isYellowChip == true)
          {
@@ -229,7 +239,8 @@ public class MainGUI
          else
          {
             System.err.println("Error: no chip placed");
-         } 
+         }
+         */ 
              
       }
       
@@ -267,22 +278,23 @@ public class MainGUI
 
       public void run()
       {                 
-         while(keepGoing)
+         while(true)
          {
+            
             try
             {  
                chipMovement += 100;
                Thread.currentThread().sleep(1000);
-               repaint();                 
+               //repaint();                 
             }
             catch(InterruptedException ie)
             {
             }
             
-            if(chipMovement == 500)
+            /*if(chipMovement == 500)
             {
                keepGoing = false;
-            }
+            }*/
          }
       }        
    }
