@@ -41,9 +41,9 @@ public class MainGUI
    private int chipMovement = 0;
    private int redCounter = 0;
    private int yellowCounter = 0;
-   private boolean isYellowChip = false; //player two should be yellow
-   private boolean isRedChip = true;  //player one should be red
-   private static final int CHIP_MAX = 600;
+   private boolean isYellowChip = false; 
+   private boolean isRedChip = false;  
+   private static final int CHIP_MAX = 601;
    private static final int PANNEL_WIDTH = 700;
    private static final int PANNEL_HEIGHT = 690;
     
@@ -135,6 +135,25 @@ public class MainGUI
         
       frame.setVisible(true);       
    }
+   public void setColorChip(){
+      if(isRedChip == true && isYellowChip == false)
+      {
+         isRedChip = false;
+         isYellowChip = true;
+      
+      }
+      else if( isYellowChip == true && isRedChip == false){
+         isRedChip = true;
+         isYellowChip = false;
+      }
+      else if(isYellowChip == true && isRedChip == true){
+         System.err.println("Both chips are active.");
+      }
+      else if(isYellowChip == false && isRedChip == false){
+         isRedChip = true;
+         isYellowChip = false;
+      }
+   }
 
    public static void main(String[] args)
    {
@@ -148,7 +167,8 @@ public class MainGUI
 
    class Board extends JPanel implements ActionListener, Runnable
    {
-      private int counter = 0;
+      private int indexCounter = 5;
+      private int pixelCounter = 501;
       private String instructionsDialog = "Game Description:\nConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
       private int colNumber;                 
     
@@ -173,25 +193,76 @@ public class MainGUI
          }
          else if(actionString.equals("1"))
          {
-            gamePlay[0][1] = "r";
-            //counter++;
-                        
-            revalidate();
+            if(indexCounter< 0){
+            JOptionPane.showMessageDialog(null, "INVALID MOVE");
+            
+            }
+            setColorChip();
+            if(isYellowChip == true){
+               gamePlay[indexCounter][0] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][0] = "r";
+               indexCounter--;
+            }      
+                      
+            //revalidate();
          }
          else if(actionString.equals("2"))
-         {       
+         {
+             if(isYellowChip == true){
+               gamePlay[indexCounter][1] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][1] = "r";
+               indexCounter--;
+            }      
          }
          else if(actionString.equals("3"))
          {
+             if(isYellowChip == true){
+               gamePlay[indexCounter][0] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][0] = "r";
+               indexCounter--;
+            } 
          }
          else if(actionString.equals("4"))
          {
+             if(isYellowChip == true){
+               gamePlay[indexCounter][0] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][0] = "r";
+               indexCounter--;
+            } 
          }
          else if(actionString.equals("5"))
          {
+             if(isYellowChip == true){
+               gamePlay[indexCounter][0] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][0] = "r";
+               indexCounter--;
+            } 
          }
          else if(actionString.equals("6"))
          {
+             if(isYellowChip == true){
+               gamePlay[indexCounter][0] = "y";
+               indexCounter--;
+            }
+            else if(isRedChip == true){
+               gamePlay[indexCounter][0] = "r";
+               indexCounter--;
+            } 
          }
       }
 
@@ -220,31 +291,31 @@ public class MainGUI
             }
          }*/
         
-            if(gamePlay[0][1] == "r"){
+            if(gamePlay[0][indexCounter] == "r"){
                redChip.paintIcon(this, g, 1, 501); 
-               System.out.println("works");
             } 
             
-            repaint();        
-         /*
+                 
          
          if(isYellowChip == true)
          {
-            yellowChip.paintIcon(this,g, counter, addYellowChip());
-            counter++;
+            yellowChip.paintIcon(this,g, indexCounter, addYellowChip());
+            indexCounter++;
          }
          else if(isRedChip == true)
          {
-            redChip.paintIcon(this,g, counter, addRedChip());
-            counter++;
+            redChip.paintIcon(this,g, indexCounter, addRedChip());
+            indexCounter++;
          }    
          else
          {
             System.err.println("Error: no chip placed");
          }
-         */ 
+         
+          
              
       }
+        
       
       public int addYellowChip()
       {
@@ -253,8 +324,8 @@ public class MainGUI
          
          if(isYellowChip == true)
          {
-            counter += 100;
-            return CHIP_MAX - counter;
+            indexCounter += 100;
+            return CHIP_MAX - pixelCounter;
          }
          else
          {
@@ -269,8 +340,8 @@ public class MainGUI
          
          if(isRedChip == true)
          {
-            counter += 100;
-            return CHIP_MAX - counter;
+            pixelCounter += 100;
+            return CHIP_MAX - pixelCounter;
          }
          else
          {
