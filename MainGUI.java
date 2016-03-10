@@ -149,7 +149,7 @@ public class MainGUI
    class Board extends JPanel implements ActionListener, Runnable
    {
       private int counter = 0;
-      private String instructionsDialog = "Game Description:\n\tConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
+      private String instructionsDialog = "Game Description:\nConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
       private int colNumber;                 
     
       public Board()
@@ -173,9 +173,8 @@ public class MainGUI
          }
          else if(actionString.equals("1"))
          {
-
             gamePlay[0][1] = "r";
-            //counter++;           
+            //counter++;
                         
             revalidate();
          }
