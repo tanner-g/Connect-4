@@ -44,8 +44,8 @@ public class MainGUI
    private boolean isYellowChip = false; //player two should be yellow
    private boolean isRedChip = true;  //player one should be red
    private static final int CHIP_MAX = 600;
-   private static final int PANNEL_WIDTH = 715;
-   private static final int PANNEL_HEIGHT = 700;
+   private static final int PANNEL_WIDTH = 700;
+   private static final int PANNEL_HEIGHT = 690;
     
    private Thread thread;
  
@@ -69,7 +69,7 @@ public class MainGUI
       frame.setSize(PANNEL_WIDTH, PANNEL_HEIGHT);
       frame.setTitle("Connect 4");
       frame.setLayout(new BorderLayout());
-      frame.setResizable(true);
+      frame.setResizable(false);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setLocationRelativeTo(null);
 
