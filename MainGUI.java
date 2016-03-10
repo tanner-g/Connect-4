@@ -211,6 +211,7 @@ public class MainGUI
          }
             
          theBoard.paintIcon(this, g, 0, 0);
+               //redChip.paintIcon(this, g, 1, 1); 
          
         /* for(int i = 0; i < gamePlay.length; i++)
          {
@@ -221,9 +222,11 @@ public class MainGUI
          }*/
         
             if(gamePlay[0][1] == "r"){
-               redChip.paintIcon(this, g, 1, 1); 
-                         
-            }         
+               redChip.paintIcon(this, g, 1, 501); 
+               System.out.println("works");
+            } 
+            
+            repaint();        
          /*
          
          if(isYellowChip == true)
