@@ -409,8 +409,6 @@ public class MainGUI
                      indexCounterColSeven--;
                   }
             }
-            ();
-            System.out.println("yeah"); 
          }
       }
 
@@ -433,7 +431,7 @@ public class MainGUI
                }
             }
             
-            //repaint();
+            repaint();
          }
 
             /*if(gamePlay[0][indexCounter] == "r"){
