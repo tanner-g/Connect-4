@@ -57,6 +57,7 @@ public class MainGUI
       {{"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"},
+       {"e","e","e","e","e","e","e"}, 
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"}};
@@ -135,21 +136,25 @@ public class MainGUI
         
       frame.setVisible(true);       
    }
-   public void setColorChip(){
+   public void setColorChip()
+   {
       if(isRedChip == true && isYellowChip == false)
       {
          isRedChip = false;
          isYellowChip = true;
       
       }
-      else if( isYellowChip == true && isRedChip == false){
+      else if( isYellowChip == true && isRedChip == false)
+      {
          isRedChip = true;
          isYellowChip = false;
       }
-      else if(isYellowChip == true && isRedChip == true){
+      else if(isYellowChip == true && isRedChip == true)
+      {
          System.err.println("Both chips are active.");
       }
-      else if(isYellowChip == false && isRedChip == false){
+      else if(isYellowChip == false && isRedChip == false)
+      {
          isRedChip = true;
          isYellowChip = false;
       }
@@ -167,7 +172,14 @@ public class MainGUI
 
    class Board extends JPanel implements ActionListener, Runnable
    {
-      private int indexCounter = 5;
+      private int indexCounterColOne = 5;
+      private int indexCounterColTwo = 5;
+      private int indexCounterColThree = 5;
+      private int indexCounterColFour = 5;
+      private int indexCounterColFive = 5;
+      private int indexCounterColSix = 5;
+      private int indexCounterColSeven = 5;
+      private int indexCounter = 0;
       private int pixelCounter = 501;
       private String instructionsDialog = "Game Description:\nConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
       private int colNumber;                 
@@ -183,139 +195,264 @@ public class MainGUI
          if (actionString.equals("New Game"))
          {
          }
-         else if (actionString.equals("Exit"))
+         
+         if (actionString.equals("Exit"))
          {
             exitProgram();
          }
-         else if (actionString.equals("Instructions"))
+         
+         if (actionString.equals("Instructions"))
          {
             JOptionPane.showMessageDialog(frame, instructionsDialog);
          }
-         else if(actionString.equals("1"))
+         
+         if(actionString.equals("1"))
          {
-            if(indexCounter< 0){
-            JOptionPane.showMessageDialog(null, "INVALID MOVE");
+            switch(indexCounterColOne)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
             
-            }
-            setColorChip();
-            if(isYellowChip == true){
-               gamePlay[indexCounter][0] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][0] = "r";
-               indexCounter--;
-            }      
-                      
-            //revalidate();
-         }
-         else if(actionString.equals("2"))
-         {
-             if(isYellowChip == true){
-               gamePlay[indexCounter][1] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][1] = "r";
-               indexCounter--;
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     gamePlay[indexCounterColOne][0] = "y";
+                     indexCounterColOne--;
+                     repaint();
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColOne][0] = "r";
+                     indexCounterColOne--;
+                     repaint();
+                  }
             }      
          }
-         else if(actionString.equals("3"))
+         
+         if(actionString.equals("2"))
          {
-             if(isYellowChip == true){
-               gamePlay[indexCounter][0] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][0] = "r";
-               indexCounter--;
+            switch(indexCounterColTwo)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     gamePlay[indexCounterColTwo][1] = "y";
+                     indexCounterColTwo--;
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColTwo][1] = "r";
+                     indexCounterColTwo--;
+                  }
             } 
          }
-         else if(actionString.equals("4"))
+         
+         if(actionString.equals("3"))
          {
-             if(isYellowChip == true){
-               gamePlay[indexCounter][0] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][0] = "r";
-               indexCounter--;
+            switch(indexCounterColThree)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     gamePlay[indexCounterColThree][2] = "y";
+                     indexCounterColThree--;
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColThree][2] = "r";
+                     indexCounterColThree--;
+                  }
             } 
+
          }
-         else if(actionString.equals("5"))
+         
+         if(actionString.equals("4"))
          {
-             if(isYellowChip == true){
-               gamePlay[indexCounter][0] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][0] = "r";
-               indexCounter--;
+            switch(indexCounterColFour)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip)
+                  {
+                     gamePlay[indexCounterColFour][3] = "y";
+                     indexCounterColFour--;
+                  }
+                  else if(isRedChip)
+                  {
+                     gamePlay[indexCounterColFour][3] = "r";
+                     indexCounterColFour--;
+                  }
             } 
+ 
          }
-         else if(actionString.equals("6"))
+         
+         if(actionString.equals("5"))
          {
-             if(isYellowChip == true){
-               gamePlay[indexCounter][0] = "y";
-               indexCounter--;
-            }
-            else if(isRedChip == true){
-               gamePlay[indexCounter][0] = "r";
-               indexCounter--;
+            switch(indexCounterColFive)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     gamePlay[indexCounterColFive][4] = "y";
+                     indexCounterColFive--;
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColFive][4] = "r";
+                     indexCounterColFive--;
+                  }
             } 
+
+         }
+         
+         if(actionString.equals("6"))
+         {
+            switch(indexCounterColSix)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     gamePlay[indexCounterColSix][5] = "y";
+                     indexCounterColSix--;
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColSix][5] = "r";
+                     indexCounterColSix--;
+                  }
+            } 
+
+         }
+         
+         if(actionString.equals("7"))
+         {
+            switch(indexCounterColSeven)
+            {
+               case -1: 
+                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  break;
+            
+               case 5:
+               case 4:
+               case 3:
+               case 2:
+               case 1:
+               case 0:
+                  setColorChip();
+                  if(isYellowChip == true)
+                  {
+                     
+                     gamePlay[indexCounterColSeven][6] = "y";
+                     indexCounterColSeven--;
+                     
+                     
+                  }
+                  else if(isRedChip == true)
+                  {
+                     gamePlay[indexCounterColSeven][6] = "r";
+                     indexCounterColSeven--;
+                  }
+            }
+            ();
+            System.out.println("yeah"); 
          }
       }
 
       protected void paintComponent(Graphics g) 
       {
          super.paintComponent(g);
-         
-         for(int i = 100; i<=600; i+=100)
-         {
-            g.drawLine(i,0, i, PANNEL_HEIGHT);
-         }
-         
-         for(int i = 0; i<=500; i+=100)
-         {
-            g.drawLine(0,i,PANNEL_WIDTH,i);
-         }
             
          theBoard.paintIcon(this, g, 0, 0);
                //redChip.paintIcon(this, g, 1, 1); 
          
-        /* for(int i = 0; i < gamePlay.length; i++)
+         for(int rows = 0; rows < 6; rows++)
          {
-            for(int j = 0; j < gamePlay.length; j++)
+            for(int columns = 0; columns < 7; columns++)
             {
-               gamePlay[0][1].paintIcon(this, g , 0, 1);
+               if(gamePlay[rows][columns].equals("r")){
+                  redChip.paintIcon(this, g , columns*100, rows*100);
+               }
+               else if(gamePlay[rows][columns].equals("y")){
+                  yellowChip.paintIcon(this, g, columns*100, rows*100);
+               }
             }
-         }*/
-        
-            if(gamePlay[0][indexCounter] == "r"){
-               redChip.paintIcon(this, g, 1, 501); 
-            } 
             
-                 
+            //repaint();
+         }
+
+            /*if(gamePlay[0][indexCounter] == "r"){
+               redChip.paintIcon(this, g, 1, 501); 
+            } */
+            
          
-         if(isYellowChip == true)
+         /*if(isYellowChip == true)
          {
-            yellowChip.paintIcon(this,g, indexCounter, addYellowChip());
-            indexCounter++;
+            yellowChip.paintIcon(this,g, 0, (indexCounterColOne * 100));
+            //indexCounter++;
          }
          else if(isRedChip == true)
          {
-            redChip.paintIcon(this,g, indexCounter, addRedChip());
-            indexCounter++;
-         }    
-         else
-         {
-            System.err.println("Error: no chip placed");
-         }
+            redChip.paintIcon(this,g, 0, (indexCounterColOne * 100));
+            //indexCounter++;
+         } */   
          
-          
-             
       }
-        
       
       public int addYellowChip()
       {
@@ -369,6 +506,6 @@ public class MainGUI
                keepGoing = false;
             }*/
          }
-      }        
+      }       
    }
 }
