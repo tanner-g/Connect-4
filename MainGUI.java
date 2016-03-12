@@ -46,7 +46,8 @@ public class MainGUI
    private static final int CHIP_MAX = 601;
    private static final int PANNEL_WIDTH = 700;
    private static final int PANNEL_HEIGHT = 690;
-    
+   private boolean foundWinner = false;  //true when winner is found
+   
    private Thread thread;
  
    private Icon theBoard = new ImageIcon("grid.png");
@@ -73,9 +74,9 @@ public class MainGUI
       frame.setResizable(false);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setLocationRelativeTo(null);
-
+   
       Board al = new Board();
-
+   
       menuBar = new JMenuBar();
       fileMenu = new JMenu("File");
       newGame = new JMenuItem("New Game");
@@ -83,9 +84,9 @@ public class MainGUI
       exitMenu = new JMenuItem("Exit");
       exitMenu.addActionListener(al);
       fileMenu.add(newGame);
-  
+   
       fileMenu.add(exitMenu);
-
+   
       helpMenu = new JMenu("Help");
       instructions = new JMenuItem("Instructions");
       instructions.addActionListener(al);
@@ -170,7 +171,7 @@ public class MainGUI
       System.exit(0);
    }
 
-   class Board extends JPanel implements ActionListener, Runnable
+   class Board extends JPanel implements ActionListener
    {
       private int indexCounterColOne = 5;
       private int indexCounterColTwo = 5;
@@ -183,7 +184,9 @@ public class MainGUI
       private int pixelCounter = 501;
       private String instructionsDialog = "Game Description:\nConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
       private int colNumber;                 
-    
+      private int currentRow = 0;
+      private int currentColumn = 0;
+      private int[] indexCounterArray = {-1,5,4,3,2,1,0};
       public Board()
       {  
       }
@@ -191,9 +194,11 @@ public class MainGUI
       public void actionPerformed(ActionEvent e)
       {
          String actionString = e.getActionCommand();
+         int actionIndex = Integer.parseInt(actionString);
          
          if (actionString.equals("New Game"))
          {
+            //resets the game play board
          }
          
          if (actionString.equals("Exit"))
@@ -205,13 +210,13 @@ public class MainGUI
          {
             JOptionPane.showMessageDialog(frame, instructionsDialog);
          }
-         
+                  
          if(actionString.equals("1"))
          {
             switch(indexCounterColOne)
             {
                case -1: 
-                  JOptionPane.showMessageDialog(null, "INVALID MOVE");
+                  JOptionPane.showMessageDialog(null, "You made an invalid move.");
                   break;
             
                case 5:
@@ -290,7 +295,7 @@ public class MainGUI
                      indexCounterColThree--;
                   }
             } 
-
+         
          }
          
          if(actionString.equals("4"))
@@ -319,7 +324,7 @@ public class MainGUI
                      indexCounterColFour--;
                   }
             } 
- 
+         
          }
          
          if(actionString.equals("5"))
@@ -348,7 +353,7 @@ public class MainGUI
                      indexCounterColFive--;
                   }
             } 
-
+         
          }
          
          if(actionString.equals("6"))
@@ -377,7 +382,7 @@ public class MainGUI
                      indexCounterColSix--;
                   }
             } 
-
+         
          }
          
          if(actionString.equals("7"))
@@ -411,47 +416,74 @@ public class MainGUI
             }
          }
       }
-
+      //checks all of the possible win cases on the piece that was placed
+      // the x and y pos passed in are the current pieces position
+      public boolean findWinner(){
+         String currentPiece = gamePlay[6][0];
+         if(currentPiece.equals("e")){
+            return false;
+         }
+         else{
+            int matchFound = 0;
+            try{
+               for(int row = 0; row<6; row++){
+                  for(int col = 0; col<7; col++){
+                     if(gamePlay[row][col].equals(gamePlay[row+1][col]) && gamePlay[row][col].equals(gamePlay[row+2][col])&& gamePlay[row][col].equals(gamePlay[row+3][col])){
+                        matchFound++;
+                     }
+                  }
+               }
+            
+                                      
+            }                       
+            catch(Exception e){}
+         
+            return foundWinner;
+         }
+      }    
+        
+      
       protected void paintComponent(Graphics g) 
       {
          super.paintComponent(g);
             
          theBoard.paintIcon(this, g, 0, 0);
-               //redChip.paintIcon(this, g, 1, 1); 
-         
+                  
+            
          for(int rows = 0; rows < 6; rows++)
          {
             for(int columns = 0; columns < 7; columns++)
             {
+                
                if(gamePlay[rows][columns].equals("r")){
                   redChip.paintIcon(this, g , columns*100, rows*100);
+                                     
                }
                else if(gamePlay[rows][columns].equals("y")){
                   yellowChip.paintIcon(this, g, columns*100, rows*100);
                }
+               if(findWinner()){
+                  JOptionPane.showMessageDialog(null, "WINNER");
+                  foundWinner = true;
+                  colButton1.setEnabled(false);
+                  colButton2.setEnabled(false);
+                  colButton3.setEnabled(false);
+                  colButton4.setEnabled(false);
+                  colButton5.setEnabled(false);
+                  colButton6.setEnabled(false);
+                  colButton7.setEnabled(false);
+                     
+               
+               }
+               
             }
             
             repaint();
-         }
-
-            /*if(gamePlay[0][indexCounter] == "r"){
-               redChip.paintIcon(this, g, 1, 501); 
-            } */
             
-         
-         /*if(isYellowChip == true)
-         {
-            yellowChip.paintIcon(this,g, 0, (indexCounterColOne * 100));
-            //indexCounter++;
-         }
-         else if(isRedChip == true)
-         {
-            redChip.paintIcon(this,g, 0, (indexCounterColOne * 100));
-            //indexCounter++;
-         } */   
+         }   
          
       }
-      
+      /*
       public int addYellowChip()
       {
          isYellowChip = true;
@@ -483,7 +515,7 @@ public class MainGUI
             return -1;
          }
       }       
-
+   
       public void run()
       {                 
          while(true)
@@ -498,12 +530,8 @@ public class MainGUI
             catch(InterruptedException ie)
             {
             }
-            
-            /*if(chipMovement == 500)
-            {
-               keepGoing = false;
-            }*/
+           
          }
-      }       
+      } */      
    }
 }
