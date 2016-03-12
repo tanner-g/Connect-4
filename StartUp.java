@@ -1,4 +1,4 @@
-/**
+/*
  * @authors Tanner Glantz and Brett Phillips
  * @version 03/14/2016
  * Description: The StartUp class creates the start menu of the game.
