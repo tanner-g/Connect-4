@@ -5,7 +5,7 @@
  * Course: ISTE-121
  */
 
-//imports the necesary classes for the GUI program.
+//imports the necesary classes for the GUI program
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -17,7 +17,7 @@ import java.awt.event.*;
  * @param JButton start Creates a JButton object that that the user will press to start the game.
  * @param JPanel panel Creates a JPanel obhect that will be in BorderLayout and contain the painted image.
  * @param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton start.
- * @param Icon aPic Creates an Icon object that will take in the image to be shown..
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
  */
 public class StartUp extends JFrame implements ActionListener
 {
