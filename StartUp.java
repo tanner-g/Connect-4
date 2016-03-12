@@ -15,7 +15,7 @@ import java.awt.event.*;
  * A class that extends JFrame and implements ActionListener that will create a GUI menu for the user 
  * to press start when the would like to begin the game.
  * @param JButton start Creates a JButton object that the user will press to start the game.
- * @param JPanel panel Creates a JPanel obhect that will be in BorderLayout and contain the painted image.
+ * @param JPanel panel Creates a JPanel object that will be in BorderLayout and contain the painted image.
  * @param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton start.
  * @param Icon aPic Creates an Icon object that will take in the image to be shown.
  */
