@@ -11,8 +11,22 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
+/*
+ * A class that extends JFrame and implements ActionListener that will create a GUI for the user 
+ * to input the names of the two players playing.
+ * @param JLabel playerOneLabel Creates a JLabel object that that will let the user know who is player one.
+ * @param JLabel playerTwoLabel Creates a JLabel object that that will let the user know who is player two.
+ * @param JTextField playerOneText Creates a JTextField object where the user will be able to enter his or her name as player one of the game.
+ * @param JTextField playerTwoText Creates a JTextField object where the user will be able to enter his or her name as player two of the game.
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
+ * @param Icon aPic Creates an Icon object that will take in the image to be shown.
+ */
 public class PlayerChoice extends JFrame implements ActionListener
 {
+   //
    private JLabel playerOneLabel = null;
    private JLabel playerTwoLabel = null;
    private JTextField playerOneText = null;
@@ -22,6 +36,7 @@ public class PlayerChoice extends JFrame implements ActionListener
    private JPanel panelTwo = null;
    private String playerOneEntered;
    private String playerTwoEntered;
+   
    public static void main(String [] args)
    {
       PlayerChoice pC = new PlayerChoice();
