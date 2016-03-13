@@ -329,7 +329,6 @@ public class MainGUI
       private int currentRow = 0;
       private int currentColumn = 0;
       
-      
       /*
        * Void method that will reset the entire board and start a new game.
        */
@@ -378,21 +377,25 @@ public class MainGUI
          {
             exitProgram();
          }
-         
+         //If instructions is pressed then it will show a dialog box with the instructions on how to play the game.
          else if (actionString.equals("Instructions"))
          {
             JOptionPane.showMessageDialog(frame, instructionsDialog);
          }
          else
          {
+            //If the 1 button is pressed it will do the following actions
             if(actionString.equals("1"))
             {
+               //Takes in the counter for column one that starts at 5
                switch(indexCounterCol1)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -402,27 +405,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol1][0] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol1--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol1][0] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol1--;
                      }
                }
+               //Increments moveCount
                moveCount++;
-             
             }
-         
+            //If the 2 button is pressed it will do the following actions
             if(actionString.equals("2"))
             {
+               //Takes in the counter for column two that starts at 5
                switch(indexCounterCol2)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -432,27 +442,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol2][1] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol2--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol2][1] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol2--;
                      }
                }
+               //Increments moveCounter
                moveCount++;
-                                 
             }
-         
+            //If the 3 button is pressed it will do the following actions
             if(actionString.equals("3"))
             {
+               //Takes in the counter for column three that starts at 5
                switch(indexCounterCol3)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -462,27 +479,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol3][2] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol3--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol3][2] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol3--;
                      }
                } 
+               //Increments moveCounter
                moveCount++;
-                  
             }
-         
+            //If the 4 button is pressed it will do the following actions
             if(actionString.equals("4"))
             {
+               //Takes in the counter for column four that starts at 5
                switch(indexCounterCol4)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -492,27 +516,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol4][3] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol4--;
                      }
                      else if(isRedChip)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol4][3] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol4--;
                      }
                } 
+               //Increments moveCounter
                moveCount++;
-                  
             }
-         
+            //If the 5 button is pressed it will do the following actions
             if(actionString.equals("5"))
             {
+               //Takes in the counter for column five that starts at 5
                switch(indexCounterCol5)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -522,27 +553,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol5][4] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol5--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol5][4] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol5--;
                      }
                } 
+               //Increments moveCounter
                moveCount++;
-                 
             }
-         
+            //If the 6 button is pressed it will do the following actions
             if(actionString.equals("6"))
             {
+               //Takes in the counter for column six that starts at 5
                switch(indexCounterCol6)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -552,26 +590,34 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol6][5] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol6--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol6][5] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol6--;
                      }
                } 
+               //Increments moveCount
                moveCount++;
-              }
-         
+            }
+            //If the 7 button is pressed it will do the following actions
             if(actionString.equals("7"))
             {
+               //Takes in the counter for column sevem that starts at 5
                switch(indexCounterCol7)
                {
+                  //If it is -1, then it presents a dialog box saying it is an invalid move
                   case -1: 
                      JOptionPane.showMessageDialog(null, INVALID_MOVE_MESSAGE);
                      break;
                
+                  //If the counter is between 0-5, then it will set the color of the chip and place it in the 2D array
                   case 5:
                   case 4:
                   case 3:
@@ -581,29 +627,36 @@ public class MainGUI
                      setColorChip();
                      if(isYellowChip == true)
                      {
-                     
+                        //Places a 'y' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol7][6] = "y";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol7--;
                      }
                      else if(isRedChip == true)
                      {
+                        //Places an 'r' in the 2D array to represent which color was placed where
                         gamePlay[indexCounterCol7][6] = "r";
+                        //Decrements counter so it will know how many available spots are left to move into
                         indexCounterCol7--;
                      }
                }
+               //Increments moveCount
                moveCount++;
-                  
             }
          }
       }
-      
     
-      //checks all of the possible win cases on the piece that was placed
-      // the x and y pos passed in are the current pieces position
+     /* 
+      * boolean method that checks all of the possible win cases on the piece that was placed.
+      * @param currentRow are the current pieces position that will be checked to see if there is four in a row.
+      * @param currentCol are the current pieces position that will be checked to see if there is four in a row.
+      */
      public boolean findWinner(int currentRow, int currentCol)
      {
+         //Assigns the 2D array to a String called currentPiece, so that it can test to see if there is a winner
          String currentPiece = gamePlay[currentRow][currentCol];
         
+         //If the currentPiece equals 'e', then it is empty and will return false since there is no winner
          if(currentPiece.equals("e"))
          {
             return false;
@@ -612,86 +665,108 @@ public class MainGUI
          {
             try
             {
-               int matchFound = 1; // the first piece is included in the four count so this is how i account for it.
-               //check the vertical positions above it
+               int matchFound = 1;               
+
+               //The first piece is included in the four count so this is how i account for it. 
+               //Checks the vertical positions above it
                for(int i = currentRow+1; i <= currentRow+3; i++)
                {
+                  //It will compare the currentPieces as it goes through the vertical positions, incrementing matchFound each time if they are the same color 
                   if(currentPiece.equals(gamePlay[i][currentCol]))
                   {
                      matchFound++;                     
                   }
                }
+               //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
                if(matchFound == 4)
                {
                   matchFound = 1;
                   foundWinner = true;
                   return true;
                }
+               //If it did not find four in a row, then it will set matchFound back to 1
                else
                {
                   matchFound = 1;              
                }
+               
+               //The first piece is included in the four count so this is how i account for it.               int matchFound = 1; 
+               //Checks the horizontal positions to the right
                for(int i = currentCol+1; i<=currentCol+3; i++)
                {
+                  //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
                   if(currentPiece.equals(gamePlay[currentRow][i]))
                   {
                      matchFound++;
                   }
                }
+               //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
                if(matchFound == 4)
                {
                   matchFound = 1;
                   foundWinner = true;
                   return true;
                }
+               //If it did not find four in a row, then it will set matchFound back to 1
                else
                {
                   matchFound = 1;              
                }
+               //The first piece is included in the four count so this is how i account for it.               int matchFound = 1; 
+               //Checks the horizontal positions to the left
                for(int i = currentCol-1; i>=currentCol-3; i--)
                {
+                  //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
                   if(currentPiece.equals(gamePlay[currentRow][i]))
                   {
                      matchFound++;
                   }
                }
+               //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
                if(matchFound == 4)
                {
                   matchFound = 1;
                   return true;
                }
+               //If it did not find four in a row, then it will set matchFound back to 1
                else
                {
                   matchFound = 1;              
                }
                                                  
             }                       
+            //Catches an ArrayIndexOutOfBoundsException
             catch(ArrayIndexOutOfBoundsException e){}       
             return foundWinner;
          }
       }
       
+      /*
+       * Void method that will paint the pieces onto the board after the user
+       * pushes the button for the respective column.
+       */
       public void paintPieces(Graphics g)
       {
-         System.out.println("yes");
+         //For loop that will go through the rows and columns to find the position where the user wants to place the chip
          for(int rows = 0; rows < 6; rows++)
          {
             for(int columns = 0; columns < 7; columns++)
             {
-                
+               //If the String value of the 2D array equals 'r', then it will print a red chip in the respective spot 
                if(gamePlay[rows][columns].equals("r"))
                {
                   redChip.paintIcon(this, g , columns*100, rows*100);
                }
+               //If the String value of the 2D array equals 'y', then it will print a red chip in the respective spot 
                else if(gamePlay[rows][columns].equals("y"))
                {
                   yellowChip.paintIcon(this, g, columns*100, rows*100);
                }
+               //If it finds a winner then the method will be called and keepGoing will be set to false
                if(findWinner(rows,columns))
                {
                   keepGoing = false;
                   foundWinner = true;
-                                            
                }
                SwingUtilities.invokeLater(new Runnable(){
                public void run(){
@@ -702,34 +777,42 @@ public class MainGUI
       
       }       
       
+      /*
+       * Void method that will paint the board on the screen and print the dialog box 
+       * when a winner is found.
+       */
       protected void paintComponent(Graphics g) 
       {             
-          super.paintComponent(g);      
+         super.paintComponent(g);      
          
+         //If keep going equals true, then it will keep the board painted on the screen and continue to paint pieces as they are called on
          if(keepGoing)
          { 
-          theBoard.paintIcon(this, g, 0, 0);
-                       
-               paintPieces(g);  
-           
+            theBoard.paintIcon(this, g, 0, 0);
+            paintPieces(g);  
          }                     
             
+         //If found winner is true, then it will print a dialog box for whichever player won the game.
          if(foundWinner)
          {
             
             if(moveCount%2==0)
             {
                JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
+               //Increments the counter to show how many wins player two has
                scorePlayerTwo++;
             }
             else
             {
                JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
+               //Increments the counter to show how many wins player one has
                scorePlayerOne++;
             }
-            foundWinner = false;     
+            //Sets found winner back to false
+            foundWinner = false;
+            keepGoing = true;
+            resetBoard();
          }
-        
       }          
    }
 }
