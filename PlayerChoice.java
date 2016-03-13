@@ -127,7 +127,7 @@ public class PlayerChoice extends JFrame implements ActionListener
          playerTwoEntered = playerTwoText.getText();
          JOptionPane.showMessageDialog(null, playerOneEntered+", you will go first");
          //Creates a new MainGUI object that takes in the two players and will start the official game         
-         new MainGUI(playerOneEntered, playerTwoEntered);
+         new MainGUI(playerOneEntered, playerTwoEntered, 0, 0);
       }
    }   
 }
