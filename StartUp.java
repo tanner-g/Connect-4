@@ -14,20 +14,16 @@ import java.awt.event.*;
 /*
  * A class that extends JFrame and implements ActionListener that will create a GUI menu for the user 
  * to press start when the would like to begin the game.
- * @param JButton start Creates a JButton object that the user will press to start the game.
- * @param JPanel panel Creates a JPanel object that will be in BorderLayout and contain the painted image.
- * @param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton start.
- * @param Icon aPic Creates an Icon object that will take in the image to be shown.
  */
 public class StartUp extends JFrame implements ActionListener
 {
-   //Private JButton attribute called start that is set to null to begin with 
+   //@param JButton start Creates a JButton object that the user will press to start the game.
    private JButton start = null;
-   //Private JPanel attribute called panel that is set to null to begin with
+   //@param JPanel panel Creates a JPanel object that will be in BorderLayout and contain the painted image.
    private JPanel panel = null;
-   //Private JPanel attribute called panelTwo that is set to null to begin with
+   //@param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton start.
    private JPanel panelTwo = null;
-   //Private Icon attribute called aPic that is set to null to begin with
+   //@param Icon aPic Creates an Icon object that will take in the image to be shown.
    private Icon aPic = new ImageIcon("startup.jpg");
       
    //Main method
@@ -38,7 +34,7 @@ public class StartUp extends JFrame implements ActionListener
    }
    
    /*
-    * A constructor that will create the GUI for the StartUp class. It will create a frame that will
+    * A default constructor that will create the GUI for the StartUp class. It will create a frame that will
     * have two panels added to it. These panels will contain an Icon object to display an image
     * and a JButton that will allow the user to start the game. 
     */
