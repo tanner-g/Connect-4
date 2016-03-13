@@ -328,11 +328,7 @@ public class MainGUI
       private String instructionsDialog = "Game Description:\nConnect 4 is a two player game in which players attempt to align their colored chips four in a row.\nPlayers place their chips into the top of the board, which then fall to the lowest available spot in that column.\nPlayers place one chip per turn. The goal of the game is to align four of your chips in either horizontal, diagonal, or vertical alignment.\nThe first person to align their chips in the ways described above, is the winner.\n\nThe design of this game is close to that of the traditional version of this game.\n\n\tGame URL: https://en.wikipedia.org/wiki/Connect_Four";
       private int currentRow = 0;
       private int currentColumn = 0;
-   
-      //Empty default constructor
-      public Board()
-      {  
-      }
+      
       
       /*
        * Void method that will reset the entire board and start a new game.
@@ -355,7 +351,11 @@ public class MainGUI
          indexCounterCol4 = 5;
          indexCounterCol5 = 5;
          indexCounterCol6 = 5;
-         indexCounterCol7 = 5;        
+         indexCounterCol7 = 5;
+            SwingUtilities.invokeLater(new Runnable(){
+               public void run(){
+               repaint();             
+               }});       
       }
           
       /*
@@ -411,7 +411,8 @@ public class MainGUI
                         indexCounterCol1--;
                      }
                }
-               moveCount++;                   
+               moveCount++;
+             
             }
          
             if(actionString.equals("2"))
@@ -440,7 +441,8 @@ public class MainGUI
                         indexCounterCol2--;
                      }
                }
-               moveCount++; 
+               moveCount++;
+                                 
             }
          
             if(actionString.equals("3"))
@@ -470,6 +472,7 @@ public class MainGUI
                      }
                } 
                moveCount++;
+                  
             }
          
             if(actionString.equals("4"))
@@ -499,6 +502,7 @@ public class MainGUI
                      }
                } 
                moveCount++;
+                  
             }
          
             if(actionString.equals("5"))
@@ -528,6 +532,7 @@ public class MainGUI
                      }
                } 
                moveCount++;
+                 
             }
          
             if(actionString.equals("6"))
@@ -557,7 +562,7 @@ public class MainGUI
                      }
                } 
                moveCount++;
-            }
+              }
          
             if(actionString.equals("7"))
             {
@@ -587,6 +592,7 @@ public class MainGUI
                      }
                }
                moveCount++;
+                  
             }
          }
       }
@@ -667,6 +673,7 @@ public class MainGUI
       
       public void paintPieces(Graphics g)
       {
+         System.out.println("yes");
          for(int rows = 0; rows < 6; rows++)
          {
             for(int columns = 0; columns < 7; columns++)
@@ -684,23 +691,27 @@ public class MainGUI
                {
                   keepGoing = false;
                   foundWinner = true;
-                  updateUI();                           
+                                            
                }
-               updateUI();            
+               SwingUtilities.invokeLater(new Runnable(){
+               public void run(){
+               repaint();
+               }});           
             }     
          }
       
       }       
       
       protected void paintComponent(Graphics g) 
-      {
+      {             
+          super.paintComponent(g);      
+         
          if(keepGoing)
-         {
-            super.paintComponent(g);
-               
-            theBoard.paintIcon(this, g, 0, 0);
-              
-            paintPieces(g);
+         { 
+          theBoard.paintIcon(this, g, 0, 0);
+                       
+               paintPieces(g);  
+           
          }                     
             
          if(foundWinner)
@@ -715,8 +726,10 @@ public class MainGUI
             {
                JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
                scorePlayerOne++;
-            }     
+            }
+            foundWinner = false;     
          }
+        
       }          
    }
 }
