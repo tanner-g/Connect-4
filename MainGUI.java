@@ -790,28 +790,27 @@ public class MainGUI
          { 
             theBoard.paintIcon(this, g, 0, 0);
             paintPieces(g);  
-         }                     
-            
-         //If found winner is true, then it will print a dialog box for whichever player won the game.
-         if(foundWinner)
-         {
-            
-            if(moveCount%2==0)
+                              
+            //If found winner is true, then it will print a dialog box for whichever player won the game.
+            if(foundWinner)
             {
-               JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
-               //Increments the counter to show how many wins player two has
-               scorePlayerTwo++;
+               if(moveCount%2==0)
+               {
+                  JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
+                  //Increments the counter to show how many wins player two has
+                  scorePlayerTwo++;
+               }
+               else
+               {
+                  JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
+                  //Increments the counter to show how many wins player one has
+                  scorePlayerOne++;
+               }
+               //Sets found winner back to false
+               foundWinner = false;
+               keepGoing = true;
+               resetBoard();
             }
-            else
-            {
-               JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
-               //Increments the counter to show how many wins player one has
-               scorePlayerOne++;
-            }
-            //Sets found winner back to false
-            foundWinner = false;
-            keepGoing = true;
-            resetBoard();
          }
       }          
    }
