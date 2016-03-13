@@ -351,10 +351,10 @@ public class MainGUI
          indexCounterCol5 = 5;
          indexCounterCol6 = 5;
          indexCounterCol7 = 5;
-            SwingUtilities.invokeLater(new Runnable(){
+            /*SwingUtilities.invokeLater(new Runnable(){
                public void run(){
                repaint();             
-               }});       
+               }}); */      
       }
           
       /*
@@ -784,11 +784,11 @@ public class MainGUI
       protected void paintComponent(Graphics g) 
       {             
          super.paintComponent(g);      
-         
          //If keep going equals true, then it will keep the board painted on the screen and continue to paint pieces as they are called on
          if(keepGoing)
          { 
             theBoard.paintIcon(this, g, 0, 0);
+
             paintPieces(g);  
                               
             //If found winner is true, then it will print a dialog box for whichever player won the game.
@@ -809,7 +809,7 @@ public class MainGUI
                //Sets found winner back to false
                foundWinner = false;
                keepGoing = true;
-               resetBoard();
+              
             }
          }
       }          
