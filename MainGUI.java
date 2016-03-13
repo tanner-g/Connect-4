@@ -34,11 +34,9 @@ public class MainGUI
    private JButton colButton7;
    private JLabel playerOne;
    private JLabel playerTwo;
-   private JLabel numMovesTaken;
    private static String finalPlayerOne = null;
    private static String finalPlayerTwo = null;
    private int moveCount = 0; //red is first player or player one
-
    private int chipMovement = 0;
    private int redCounter = 0;
    private int yellowCounter = 0;
@@ -47,26 +45,26 @@ public class MainGUI
    private static final int CHIP_MAX = 601;
    private static final int PANNEL_WIDTH = 700;
    private static final int PANNEL_HEIGHT = 690;
-   private boolean foundWinner = false;  //true when winner is found
-   
-   private Thread thread;
- 
+   private boolean foundWinner = false;  //true when winner is found   
+   private Thread thread; 
    private Icon theBoard = new ImageIcon("grid.png");
    private Icon yellowChip = new ImageIcon("yellowpiece.png");
    private Icon redChip = new ImageIcon("redpiece.png");
-   
+   private int scorePlayerOne;
+   private int scorePlayerTwo; 
    private String[][] gamePlay = new String[][]
       {{"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"}, 
        {"e","e","e","e","e","e","e"},
-       {"e","e","e","e","e","e","e"}};
-   
-   public MainGUI(String _playerOne, String _playerTwo)
+       {"e","e","e","e","e","e","e"}};   
+   public MainGUI(String _playerOne, String _playerTwo, int scoreOne, int scoreTwo)
    {
       finalPlayerOne = _playerOne;
       finalPlayerTwo = _playerTwo;
+      scorePlayerOne = scoreOne;
+      scorePlayerTwo = scoreTwo;
       frame = new JFrame();
       frame.setSize(PANNEL_WIDTH, PANNEL_HEIGHT);
       frame.setTitle("Connect 4");
@@ -116,26 +114,23 @@ public class MainGUI
       buttonPanel.add(colButton5);
       buttonPanel.add(colButton6);
       buttonPanel.add(colButton7);
-      panel = new JPanel(new BorderLayout());
-   
-        
-      panel.add(new Board(), BorderLayout.CENTER);
-      
-      panelTwo = new JPanel(new GridLayout(1, 3));
-     
-      playerOne = new JLabel(finalPlayerOne + ":\t" );//put chip color here and a counter for each piece set
+      panel = new JPanel(new BorderLayout());        
+      panel.add(new Board(), BorderLayout.CENTER);      
+      panelTwo = new JPanel(new GridLayout(1, 3));     
+      playerOne = new JLabel(finalPlayerOne + ":\t"+scorePlayerOne, SwingConstants.CENTER );//put chip color here and a counter for each piece set
+      playerOne.setOpaque(true);
+      playerOne.setBackground(Color.RED);
       panelTwo.add(playerOne);
-      playerTwo = new JLabel(finalPlayerTwo + ":\t" );
+      playerTwo = new JLabel(finalPlayerTwo + ":\t"+scorePlayerTwo,SwingConstants.CENTER );
+      playerTwo.setOpaque(true);
+      playerTwo.setBackground(Color.YELLOW);
       panelTwo.add(playerTwo);
-      numMovesTaken = new JLabel("Number of Moves: "+moveCount);
-      panelTwo.add(numMovesTaken);
       mainPanel = new JPanel(new BorderLayout());
       mainPanel.add(buttonPanel, BorderLayout.NORTH);
       mainPanel.add(panel,BorderLayout.CENTER);
       mainPanel.add(panelTwo,BorderLayout.SOUTH);
       frame.add(menuBar, BorderLayout.NORTH);
-      frame.add(mainPanel, BorderLayout.CENTER);       
-        
+      frame.add(mainPanel, BorderLayout.CENTER);        
       frame.setVisible(true);
             
    }
@@ -162,10 +157,9 @@ public class MainGUI
          isYellowChip = false;
       }
    }
-
    public static void main(String[] args)
    {
-      MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo);
+      MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo, 0, 0);
    }
 
    public void exitProgram()
@@ -173,7 +167,6 @@ public class MainGUI
       System.exit(0);
    }
  
-
    class Board extends JPanel implements ActionListener
    {
       private boolean keepGoing = true;
@@ -206,20 +199,17 @@ public class MainGUI
          indexCounterCol4 = 5;
          indexCounterCol5 = 5;
          indexCounterCol6 = 5;
-         indexCounterCol7 = 5;      
+         indexCounterCol7 = 5;        
       }
           
       public void actionPerformed(ActionEvent e)
-      {
-         
+      {  
+             
          String actionString = e.getActionCommand();
          
-         int[] indexArray = {0,1,2,3,4,5,6,7};
          if (actionString.equals("New Game"))
          {
-            resetBoard();
-            
-            updateUI();
+            resetBoard();            
          }
          
          else if (actionString.equals("Exit"))
@@ -252,18 +242,14 @@ public class MainGUI
                      {
                         gamePlay[indexCounterCol1][0] = "y";
                         indexCounterCol1--;
-                        revalidate();
-                        repaint();
                      }
                      else if(isRedChip == true)
                      {
                         gamePlay[indexCounterCol1][0] = "r";
                         indexCounterCol1--;
-                        revalidate();
-                        repaint();
                      }
                }
-               moveCount++;      
+               moveCount++;                   
             }
          
             if(actionString.equals("2"))
@@ -431,8 +417,6 @@ public class MainGUI
                      
                         gamePlay[indexCounterCol7][6] = "y";
                         indexCounterCol7--;
-                     
-                     
                      }
                      else if(isRedChip == true)
                      {
@@ -449,7 +433,7 @@ public class MainGUI
     
       //checks all of the possible win cases on the piece that was placed
       // the x and y pos passed in are the current pieces position
-      public boolean findWinner(int currentRow, int currentCol){
+     public boolean findWinner(int currentRow, int currentCol){
          String currentPiece = gamePlay[currentRow][currentCol];
         
          
@@ -462,8 +446,7 @@ public class MainGUI
                //check the vertical positions above it
                for(int i = currentRow+1; i <= currentRow+3; i++){
                   if(currentPiece.equals(gamePlay[i][currentCol])){
-                     matchFound++;
-                     
+                     matchFound++;                     
                   }
                }
                if(matchFound == 4){
@@ -487,7 +470,7 @@ public class MainGUI
                else{
                   matchFound = 1;              
                }
-               for(int i = currentCol-1; i<=currentCol-3; i--){
+               for(int i = currentCol-1; i>=currentCol-3; i--){
                   if(currentPiece.equals(gamePlay[currentRow][i])){
                      matchFound++;
                   }
@@ -501,9 +484,7 @@ public class MainGUI
                }
                                                  
             }                       
-            catch(ArrayIndexOutOfBoundsException e){}
-            
-                     
+            catch(ArrayIndexOutOfBoundsException e){}       
             return foundWinner;
          }
       }
@@ -524,23 +505,16 @@ public class MainGUI
                  
                }
                if(findWinner(rows,columns)){
-                  updateUI();
                   keepGoing = false;
-                  colButton1.setEnabled(false);
-                  colButton2.setEnabled(false);
-                  colButton3.setEnabled(false);
-                  colButton4.setEnabled(false);
-                  colButton5.setEnabled(false);
-                  colButton6.setEnabled(false);
-                  colButton7.setEnabled(false);
-                 
-               }                           
+                  foundWinner = true;
+                  updateUI();                           
+               }
+               updateUI();            
+                                        
             }     
-         }         
+         }
       
-       
-      }
-        
+      }       
       
       protected void paintComponent(Graphics g) 
       {
@@ -548,26 +522,25 @@ public class MainGUI
             super.paintComponent(g);
             
             theBoard.paintIcon(this, g, 0, 0);
-             
+           
             paintPieces(g);
-            
+                             
          }
          if(foundWinner){
+         
             if(moveCount%2==0){
-            JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
-            }
-            else{
-               JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
-           }
-            exitProgram();
-         // resetBoard();
-         
+                        JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
+                        scorePlayerTwo++;
+                       
+                        }
+                  else{
+                       JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
+                       scorePlayerOne++;
+                     
+                                  
+                     }     
          }
-         
-         updateUI();
-           
-              
+             
       }          
-     
    }
 }
