@@ -53,7 +53,7 @@ public class PlayerChoice extends JFrame implements ActionListener
    } 
    
    /*
-    * A constructor that will create the GUI for the PlayerChoice class. It will create a frame that will
+    * The default constructor that will create the GUI for the PlayerChoice class. It will create a frame that will
     * have two panels added to it. These panels will contain JLabel and TextField objects that will allow
     * the user to input their name into either player one or two and a JButton that will allow the user 
     * accept the players, enter them, and start the game. 
@@ -125,6 +125,7 @@ public class PlayerChoice extends JFrame implements ActionListener
          playerOneEntered = playerOneText.getText();
          //Gets the text that was enterened in the TextField and assigns it to the String playerTwoEntered
          playerTwoEntered = playerTwoText.getText();
+         JOptionPane.showMessageDialog(null, playerOneEntered+", you will go first");
          //Creates a new MainGUI object that takes in the two players and will start the official game         
          new MainGUI(playerOneEntered, playerTwoEntered);
       }
