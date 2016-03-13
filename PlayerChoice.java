@@ -17,23 +17,26 @@ import java.awt.event.*;
  */
 public class PlayerChoice extends JFrame implements ActionListener
 {
-   //@param JLabel playerOneLabel Creates a JLabel object that that will let the user know who is player one.
+   /* 
+    * @param JLabel playerOneLabel Creates a JLabel object that that will let the user know who is player one.
+    * @param JLabel playerTwoLabel Creates a JLabel object that that will let the user know who is player two.
+    * @param JTextField playerOneText Creates a JTextField object where the user will be able to enter his or her name as player one of the game.
+    * @param JTextField playerTwoText Creates a JTextField object where the user will be able to enter his or her name as player two of the game.
+    * @param JButton ok Creates a JButton object that the user will press to add the players to the game and also start the game.
+    * @param JPanel panel Creates a JPanel object that will be in GridLayout and contain the JLabel and JTextFields for the player input.
+    * @param JPanel panel Creates a JPanel object that will be in GridLayout and contain the JLabel and JTextFields for the player input.
+    * @param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton ok.
+    * @param String playerOneEntered Gets assigned the text that was put in the textField for player one.
+    * @param String playerTwoEntered Gets assigned the text that was put in the textField for player two.
+    */
    private JLabel playerOneLabel = null;
-   //@param JLabel playerTwoLabel Creates a JLabel object that that will let the user know who is player two.
    private JLabel playerTwoLabel = null;
-   //@param JTextField playerOneText Creates a JTextField object where the user will be able to enter his or her name as player one of the game.
    private JTextField playerOneText = null;
-   //@param JTextField playerTwoText Creates a JTextField object where the user will be able to enter his or her name as player two of the game.
    private JTextField playerTwoText = null;
-   //@param JButton ok Creates a JButton object that the user will press to add the players to the game and also start the game.
    private JButton ok = null;
-   //@param JPanel panel Creates a JPanel object that will be in GridLayout and contain the JLabel and JTextFields for the player input.
    private JPanel panel = null;
-   //@param JPanel panelTwo Creates a JPanel object that will be in FlowLayout and contain the JButton ok.
    private JPanel panelTwo = null;
-   //@param String playerOneEntered Gets assigned the text that was put in the textField for player one.
    private String playerOneEntered;
-   //@param String playerTwoEntered Gets assigned the text that was put in the textField for player two.
    private String playerTwoEntered;
    
    //Main method

@@ -1,7 +1,7 @@
- /**
+/*
  * @authors Tanner Glantz and Brett Phillips
- * @version 02/27/2016
- * Description: The MainGUI class creates the Connect 4 game board
+ * @version 03/14/2016
+ * Description: The MainGUI class creates the Connect 4 game board and allows the pieces to be put on the board.
  * Course: ISTE-121
  */
 
@@ -12,11 +12,20 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
+/*
+ * A class that will will create the game board and load the pieces. 
+ * Players will then be able to take turns placing their chips on 
+ * the game board by pressing the respective buttons 1-7.
+ */
 public class MainGUI
 {
+   //@param JFrame frame Creates a JFrame object that will hold all of the components of the GUI program. 
    private JFrame frame;
+   //@param JMenuBar menuBar Creates a menu bar for the program which contains a file and help dropdown menu.
    private JMenuBar menuBar;
+   //@param JMenu fileMenu Creates a file dropdown menu which contains a new game and an exit button that will terminate the program.
    private JMenu fileMenu;
+   //@param JMenu helpMenu Creates a help dropdown menu which contains an instruction button that will show a pop up dialog box with information about the game.
    private JMenu helpMenu;
    private JMenuItem newGame;
    private JMenuItem exitMenu;
@@ -59,6 +68,7 @@ public class MainGUI
        {"e","e","e","e","e","e","e"}, 
        {"e","e","e","e","e","e","e"},
        {"e","e","e","e","e","e","e"}};   
+  
    public MainGUI(String _playerOne, String _playerTwo, int scoreOne, int scoreTwo)
    {
       finalPlayerOne = _playerOne;
@@ -134,6 +144,7 @@ public class MainGUI
       frame.setVisible(true);
             
    }
+   
    public void setColorChip()
    {
       if(isRedChip == true && isYellowChip == false)
@@ -157,6 +168,7 @@ public class MainGUI
          isYellowChip = false;
       }
    }
+   
    public static void main(String[] args)
    {
       MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo, 0, 0);
@@ -187,12 +199,17 @@ public class MainGUI
       public Board()
       {  
       }
-      public void resetBoard(){
-         for( int i = 0; i<=5; i++){
-            for(int j = 0; j<=6; j++){
+      
+      public void resetBoard()
+      {
+         for( int i = 0; i<=5; i++)
+         {
+            for(int j = 0; j<=6; j++)
+            {
                gamePlay[i][j] = "e";
             }      
          }
+         
          indexCounterCol1 = 5;
          indexCounterCol2 = 5;
          indexCounterCol3 = 5;
@@ -221,8 +238,8 @@ public class MainGUI
          {
             JOptionPane.showMessageDialog(frame, instructionsDialog);
          }
-         else{
-         
+         else
+         {
             if(actionString.equals("1"))
             {
                switch(indexCounterCol1)
@@ -427,59 +444,73 @@ public class MainGUI
                moveCount++;
             }
          }
-         
       }
       
     
       //checks all of the possible win cases on the piece that was placed
       // the x and y pos passed in are the current pieces position
-     public boolean findWinner(int currentRow, int currentCol){
+     public boolean findWinner(int currentRow, int currentCol)
+     {
          String currentPiece = gamePlay[currentRow][currentCol];
         
-         
-         if(currentPiece.equals("e")){
+         if(currentPiece.equals("e"))
+         {
             return false;
          }
-         else{
-            try{
+         else
+         {
+            try
+            {
                int matchFound = 1; // the first piece is included in the four count so this is how i account for it.
                //check the vertical positions above it
-               for(int i = currentRow+1; i <= currentRow+3; i++){
-                  if(currentPiece.equals(gamePlay[i][currentCol])){
+               for(int i = currentRow+1; i <= currentRow+3; i++)
+               {
+                  if(currentPiece.equals(gamePlay[i][currentCol]))
+                  {
                      matchFound++;                     
                   }
                }
-               if(matchFound == 4){
+               if(matchFound == 4)
+               {
                   matchFound = 1;
                   foundWinner = true;
                   return true;
                }
-               else{
+               else
+               {
                   matchFound = 1;              
                }
-               for(int i = currentCol+1; i<=currentCol+3; i++){
-                  if(currentPiece.equals(gamePlay[currentRow][i])){
+               for(int i = currentCol+1; i<=currentCol+3; i++)
+               {
+                  if(currentPiece.equals(gamePlay[currentRow][i]))
+                  {
                      matchFound++;
                   }
                }
-               if(matchFound == 4){
+               if(matchFound == 4)
+               {
                   matchFound = 1;
                   foundWinner = true;
                   return true;
                }
-               else{
+               else
+               {
                   matchFound = 1;              
                }
-               for(int i = currentCol-1; i>=currentCol-3; i--){
-                  if(currentPiece.equals(gamePlay[currentRow][i])){
+               for(int i = currentCol-1; i>=currentCol-3; i--)
+               {
+                  if(currentPiece.equals(gamePlay[currentRow][i]))
+                  {
                      matchFound++;
                   }
                }
-               if(matchFound == 4){
+               if(matchFound == 4)
+               {
                   matchFound = 1;
                   return true;
                }
-               else{
+               else
+               {
                   matchFound = 1;              
                }
                                                  
@@ -489,28 +520,28 @@ public class MainGUI
          }
       }
       
-      public void paintPieces(Graphics g){
-       
+      public void paintPieces(Graphics g)
+      {
          for(int rows = 0; rows < 6; rows++)
          {
             for(int columns = 0; columns < 7; columns++)
             {
                 
-               if(gamePlay[rows][columns].equals("r")){
+               if(gamePlay[rows][columns].equals("r"))
+               {
                   redChip.paintIcon(this, g , columns*100, rows*100);
-                                
                }
-               else if(gamePlay[rows][columns].equals("y")){
+               else if(gamePlay[rows][columns].equals("y"))
+               {
                   yellowChip.paintIcon(this, g, columns*100, rows*100);
-                 
                }
-               if(findWinner(rows,columns)){
+               if(findWinner(rows,columns))
+               {
                   keepGoing = false;
                   foundWinner = true;
                   updateUI();                           
                }
                updateUI();            
-                                        
             }     
          }
       
@@ -518,7 +549,8 @@ public class MainGUI
       
       protected void paintComponent(Graphics g) 
       {
-         if(keepGoing){
+         if(keepGoing)
+         {
             super.paintComponent(g);
             
             theBoard.paintIcon(this, g, 0, 0);
@@ -526,21 +558,20 @@ public class MainGUI
             paintPieces(g);
                              
          }
-         if(foundWinner){
+         if(foundWinner)
+         {
          
-            if(moveCount%2==0){
-                        JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
-                        scorePlayerTwo++;
-                       
-                        }
-                  else{
-                       JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
-                       scorePlayerOne++;
-                     
-                                  
-                     }     
+            if(moveCount%2==0)
+            {
+               JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
+               scorePlayerTwo++;
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
+               scorePlayerOne++;
+            }     
          }
-             
       }          
    }
 }
