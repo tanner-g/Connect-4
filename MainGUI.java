@@ -345,10 +345,11 @@ public class MainGUI
          indexCounterCol5 = 5;
          indexCounterCol6 = 5;
          indexCounterCol7 = 5;
-            SwingUtilities.invokeLater(new Runnable(){
-               public void run(){
-               repaint();             
-               }}); 
+         SwingUtilities.invokeLater(
+               new Runnable(){
+                  public void run(){
+                     repaint();             
+                  }}); 
       }
           
       /*
@@ -665,8 +666,8 @@ public class MainGUI
       * @param currentRow are the current pieces position that will be checked to see if there is four in a row.
       * @param currentCol are the current pieces position that will be checked to see if there is four in a row.
       */
-     public boolean findWinner(int currentRow, int currentCol)
-     {
+      public boolean findWinner(int currentRow, int currentCol)
+      {
          //Assigns the 2D array to a String called currentPiece, so that it can test to see if there is a winner
          String currentPiece = gamePlay[currentRow][currentCol];
         
@@ -675,92 +676,134 @@ public class MainGUI
          {
             return false;
          }         
-            try
-            {
-               int matchFound = 1;               
-
+         try
+         {
+            int matchFound = 1;               
+         
                //The first piece is included in the four count so this is how i account for it. 
                //Checks the vertical positions above it
-               for(int i = currentRow+1; i <= currentRow+3; i++)
-               {
-                  if(i>5){
-                     break;
-                  }
+            for(int i = currentRow+1; i <= currentRow+3; i++)
+            {
+               if(i>5){
+                  break;
+               }
                   //It will compare the currentPieces as it goes through the vertical positions, incrementing matchFound each time if they are the same color 
-                  if(currentPiece.equals(gamePlay[i][currentCol]))
-                  {
-                     matchFound++;                     
-                  }
+               if(currentPiece.equals(gamePlay[i][currentCol]))
+               {
+                  matchFound++;                     
                }
+            }
                //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
-               if(matchFound == 4)
-               {
-                  matchFound = 1;
-                  foundWinner = true;
-                  return true;
-               }
+            if(matchFound == 4)
+            {
+               matchFound = 1;
+               foundWinner = true;
+               return true;
+            }
                //If it did not find four in a row, then it will set matchFound back to 1
-               else
-               {
-                  matchFound = 1;              
-               }
+            else
+            {
+               matchFound = 1;              
+            }
                
                //The first piece is included in the four count so this is how i account for it.              
                //Checks the horizontal positions to the right
-               for(int j = currentCol+1; j<=currentCol+3; j++)
-               {  
-                  if(j>6){
-                     break;
-                  }
+            for(int j = currentCol+1; j<=currentCol+3; j++)
+            {  
+               if(j>6){
+                  break;
+               }
                   //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
-                  if(currentPiece.equals(gamePlay[currentRow][j]))
-                  {
-                     matchFound++;
-                  }
+               if(currentPiece.equals(gamePlay[currentRow][j]))
+               {
+                  matchFound++;
                }
+            }
                //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
-               if(matchFound == 4)
-               {
-                  matchFound = 1;
-                  foundWinner = true;
-                  return true;
-               }
+            if(matchFound == 4)
+            {
+               matchFound = 1;
+               foundWinner = true;
+               return true;
+            }
                //If it did not find four in a row, then it will set matchFound back to 1
-               else
-               {
-                  matchFound = 1;              
-               }
+            else
+            {
+               matchFound = 1;              
+            }
                //The first piece is included in the four count so this is how i account for it.               
                //Checks the horizontal positions to the left
-               for(int i = currentCol-1; i>=currentCol-3; i--)
+            for(int i = currentCol-1; i>=currentCol-3; i--)
+            {
+               if(i<0){
+                  break;
+               }
+                  //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
+               if(currentPiece.equals(gamePlay[currentRow][i]))
                {
-                  if(i<0){
+                  matchFound++;
+               }
+            }
+               //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
+            if(matchFound == 4)
+            {
+               matchFound = 1;
+               return true;
+            }
+               //If it did not find four in a row, then it will set matchFound back to 1
+            else
+            {
+               matchFound = 1;              
+            }
+            matchFound = 0;
+            for(int row = currentRow-1; row>=currentRow-3; row--){
+               for(int col = currentCol+1; col<=currentCol+3; col++){
+                  if(row<0 || col>6){
                      break;
                   }
-                  //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
-                  if(currentPiece.equals(gamePlay[currentRow][i]))
-                  {
+                  if(currentPiece.equals(gamePlay[row][col])){
                      matchFound++;
                   }
                }
+            }
                //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
-               if(matchFound == 4)
-               {
-                  matchFound = 1;
-                  return true;
-               }
+            if(matchFound == 4)
+            {
+               matchFound = 0;
+               return true;
+            }
                //If it did not find four in a row, then it will set matchFound back to 1
-               else
-               {
-                  matchFound = 1;              
+            else
+            {
+               matchFound = 0;              
+            }
+            for(int row = currentRow+1; row<=currentRow+3; row++){
+               for(int col = currentCol+1; col<=currentCol+3; col++){
+                  if(row>5 || col>6){
+                     break;
+                  }
+                  if(currentPiece.equals(gamePlay[row][col])){
+                     matchFound++;
+                  }
                }
+            }
+               //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
+            if(matchFound == 4)
+            {
+               matchFound = 1;
+               return true;
+            }
+               //If it did not find four in a row, then it will set matchFound back to 1
+            else
+            {
+               matchFound = 0;              
+            }  
                                                  
-            }                       
+         }                       
             //Catches an ArrayIndexOutOfBoundsException
-            catch(ArrayIndexOutOfBoundsException e){
-               e.printStackTrace();
-            }       
-            return foundWinner;
+         catch(ArrayIndexOutOfBoundsException e){
+         }       
+         return foundWinner;
          
       }
       
@@ -791,10 +834,11 @@ public class MainGUI
                   keepGoing = false;
                   foundWinner = true;
                }
-               SwingUtilities.invokeLater(new Runnable(){
-               public void run(){
-               repaint();
-               }});     
+               SwingUtilities.invokeLater(
+                     new Runnable(){
+                        public void run(){
+                           repaint();
+                        }});     
             }
          }
       }  
@@ -810,7 +854,7 @@ public class MainGUI
          if(keepGoing)
          { 
             theBoard.paintIcon(this, g, 0, 0);
-
+         
             paintPieces(g);
                               
             //If found winner is true, then it will print a dialog box for whichever player won the game.
@@ -833,7 +877,7 @@ public class MainGUI
                
                //Prints the score of the game
                JOptionPane.showMessageDialog(null, "SCORE:\n\n" + finalPlayerOne+" = " + scorePlayerOne + "\n" + finalPlayerTwo + " = " + scorePlayerTwo);
-
+            
                //Sets the buttons to false, so the players can start a new game
                colButton1.setEnabled(false);
                colButton2.setEnabled(false);
