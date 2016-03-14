@@ -769,7 +769,7 @@ public class MainGUI
                //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
             if(matchFound == 4)
             {
-               matchFound = 0;
+               matchFound = 1;
                return true;
             }
                //If it did not find four in a row, then it will set matchFound back to 1
@@ -790,7 +790,7 @@ public class MainGUI
                //If matchFound equals four, then some player got four in a row and it will return foundWinner to be true
             if(matchFound == 4)
             {
-               matchFound = 0;
+               matchFound = 1;
                return true;
             }
                //If it did not find four in a row, then it will set matchFound back to 1
