@@ -77,12 +77,12 @@ public class MainGUI
    private JLabel playerTwo;
    private static String finalPlayerOne = null;
    private static String finalPlayerTwo = null;
-   private int moveCount = 0; //red is first player or player one
+   private int moveCount = 0;
    private boolean isYellowChip = false; 
    private boolean isRedChip = false;  
    private static final int PANNEL_WIDTH = 700;
    private static final int PANNEL_HEIGHT = 690;
-   private boolean foundWinner = false;  //true when winner is found   
+   private boolean foundWinner = false; 
    private Icon theBoard = new ImageIcon("grid.png");
    private Icon yellowChip = new ImageIcon("yellowpiece.png");
    private Icon redChip = new ImageIcon("redpiece.png");
@@ -104,19 +104,13 @@ public class MainGUI
     * wins for each player.
     * @param String _playerOne Takes in the name of player one so that it can be placed on the bottom of the frame
     * @param String _playerTwo Takes in the name of player two so that it can be placed on the bottom of the frame
-    * @param int scoreOne Takes in the number of wins for player one so that it can be placed on the bottom of the frame
-    * @param int scoreTwo Takes in the number of wins for player two so that it can be placed on the bottom of the frame
     */
-   public MainGUI(String _playerOne, String _playerTwo, int scoreOne, int scoreTwo)
+   public MainGUI(String _playerOne, String _playerTwo)
    {
       //Assigns the String value of _playerOne to finalPlayerOne
       finalPlayerOne = _playerOne;
       //Assigns the String value of _playerTwo to finalPlayerTwo
       finalPlayerTwo = _playerTwo;
-      //Assigns the int value of scoreOne to scorePlayerOne
-      scorePlayerOne = scoreOne;
-      //Assigns the int value of scoreTwo to scorePlayerTwo
-      scorePlayerTwo = scoreTwo;
       //Creates a new JFrame object
       frame = new JFrame();
       //Sets the size of the frame using constant variables
@@ -216,7 +210,7 @@ public class MainGUI
       //Creates a JPanel object called panelTwo where the player names and score will be placed and sets it to GridLayout
       panelTwo = new JPanel(new GridLayout(1, 3));     
       //Creates a new JLabel that will take in the player one's name and score and center align it
-      playerOne = new JLabel(finalPlayerOne + ":\t"+scorePlayerOne, SwingConstants.CENTER );
+      playerOne = new JLabel(finalPlayerOne, SwingConstants.CENTER );
       //Sets the label to be opaque so a color can be show in the background
       playerOne.setOpaque(true);
       //Sets the background color of player one to red to represent what color chip they are
@@ -224,7 +218,7 @@ public class MainGUI
       //Adds the label to the panel
       panelTwo.add(playerOne);
       //Creates a new JLabel that will take in the player two's name and score and center align it
-      playerTwo = new JLabel(finalPlayerTwo + ":\t"+scorePlayerTwo,SwingConstants.CENTER );
+      playerTwo = new JLabel(finalPlayerTwo, SwingConstants.CENTER );
       //Sets the label to be opaque so a color can be show in the background
       playerTwo.setOpaque(true);
       //Sets the background color of player two to yellow to represent what color chip they are
@@ -287,7 +281,7 @@ public class MainGUI
    //Main method
    public static void main(String[] args)
    {
-      MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo, 0, 0);
+      MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo);
    }
 
    /*
@@ -351,10 +345,10 @@ public class MainGUI
          indexCounterCol5 = 5;
          indexCounterCol6 = 5;
          indexCounterCol7 = 5;
-            /*SwingUtilities.invokeLater(new Runnable(){
+            SwingUtilities.invokeLater(new Runnable(){
                public void run(){
                repaint();             
-               }}); */      
+               }}); 
       }
           
       /*
@@ -367,10 +361,30 @@ public class MainGUI
          //Assigns the action command to a String variable called actionString    
          String actionString = e.getActionCommand();
          
-         //If new game is pressed then it will reset the board by using the resetBoard method
+         //If new game is pressed then it will reset the board by using the resetBoard method and set the buttons to be enabled
          if (actionString.equals("New Game"))
          {
-            resetBoard();            
+            resetBoard();
+            
+            colButton1.setEnabled(true);
+            colButton2.setEnabled(true);
+            colButton3.setEnabled(true);
+            colButton4.setEnabled(true);
+            colButton5.setEnabled(true);
+            colButton6.setEnabled(true);
+            colButton7.setEnabled(true); 
+                        
+            //Decides who will end up going first based off of the last move 
+            if(isRedChip)
+            {
+               JOptionPane.showMessageDialog(null, finalPlayerTwo +", you will go first");
+            }
+            else
+            {
+               JOptionPane.showMessageDialog(null, finalPlayerOne +", you will go first");
+            }
+            
+            
          }
          //If exit is pressed then it will terminate the program using the exitProgram method.
          else if (actionString.equals("Exit"))
@@ -771,11 +785,10 @@ public class MainGUI
                SwingUtilities.invokeLater(new Runnable(){
                public void run(){
                repaint();
-               }});           
-            }     
+               }});     
+            }
          }
-      
-      }       
+      }  
       
       /*
        * Void method that will paint the board on the screen and print the dialog box 
@@ -789,29 +802,43 @@ public class MainGUI
          { 
             theBoard.paintIcon(this, g, 0, 0);
 
-            paintPieces(g);  
+            paintPieces(g);
                               
             //If found winner is true, then it will print a dialog box for whichever player won the game.
             if(foundWinner)
             {
                if(moveCount%2==0)
                {
-                  JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!");
+                  JOptionPane.showMessageDialog(null, finalPlayerTwo+" you won!\n\nTo play a new game:\nFile -> New Game");
                   //Increments the counter to show how many wins player two has
                   scorePlayerTwo++;
                }
                else
                {
-                  JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!");
+                  JOptionPane.showMessageDialog(null, finalPlayerOne+" you won!\n\nTo play a new game:\nFile -> New Game");
                   //Increments the counter to show how many wins player one has
                   scorePlayerOne++;
                }
-               //Sets found winner back to false
+               
                foundWinner = false;
-               keepGoing = true;
-              
+               
+               //Prints the score of the game
+               JOptionPane.showMessageDialog(null, "SCORE:\n\n" + finalPlayerOne+" = " + scorePlayerOne + "\n" + finalPlayerTwo + " = " + scorePlayerTwo);
+
+               //Sets the buttons to false, so the players can start a new game
+               colButton1.setEnabled(false);
+               colButton2.setEnabled(false);
+               colButton3.setEnabled(false);
+               colButton4.setEnabled(false);
+               colButton5.setEnabled(false);
+               colButton6.setEnabled(false);
+               colButton7.setEnabled(false);
+               
+               resetBoard();
             }
          }
+         
+         keepGoing = true;
       }          
    }
 }
