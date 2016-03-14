@@ -57,7 +57,7 @@ public class PlayerChoice extends JFrame implements ActionListener
       //Creates a JFrame object called frame
       JFrame frame = new JFrame();
       //Sets the title of the frame
-      frame.setTitle("Connect Four");
+      frame.setTitle("Connect 4");
       //Allows the user to close hte window and terminate the program by clicking the red X
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //Sets the size of the frame
@@ -121,7 +121,7 @@ public class PlayerChoice extends JFrame implements ActionListener
          playerTwoEntered = playerTwoText.getText();
          JOptionPane.showMessageDialog(null, playerOneEntered+", you will go first");
          //Creates a new MainGUI object that takes in the two players and will start the official game         
-         new MainGUI(playerOneEntered, playerTwoEntered, 0, 0);
+         new MainGUI(playerOneEntered, playerTwoEntered);
       }
    }   
 }
