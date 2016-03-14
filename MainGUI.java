@@ -77,7 +77,7 @@ public class MainGUI
    private JLabel playerTwo;
    private static String finalPlayerOne = null;
    private static String finalPlayerTwo = null;
-   private int moveCount = 0;
+   private int moveCount = 1;
    private boolean isYellowChip = false; 
    private boolean isRedChip = false;  
    private static final int PANNEL_WIDTH = 700;
