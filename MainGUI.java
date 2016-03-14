@@ -674,9 +674,7 @@ public class MainGUI
          if(currentPiece.equals("e"))
          {
             return false;
-         }
-         else
-         {
+         }         
             try
             {
                int matchFound = 1;               
@@ -685,6 +683,9 @@ public class MainGUI
                //Checks the vertical positions above it
                for(int i = currentRow+1; i <= currentRow+3; i++)
                {
+                  if(i>5){
+                     break;
+                  }
                   //It will compare the currentPieces as it goes through the vertical positions, incrementing matchFound each time if they are the same color 
                   if(currentPiece.equals(gamePlay[i][currentCol]))
                   {
@@ -704,12 +705,15 @@ public class MainGUI
                   matchFound = 1;              
                }
                
-               //The first piece is included in the four count so this is how i account for it.               int matchFound = 1; 
+               //The first piece is included in the four count so this is how i account for it.              
                //Checks the horizontal positions to the right
-               for(int i = currentCol+1; i<=currentCol+3; i++)
-               {
+               for(int j = currentCol+1; j<=currentCol+3; j++)
+               {  
+                  if(j>6){
+                     break;
+                  }
                   //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
-                  if(currentPiece.equals(gamePlay[currentRow][i]))
+                  if(currentPiece.equals(gamePlay[currentRow][j]))
                   {
                      matchFound++;
                   }
@@ -726,10 +730,13 @@ public class MainGUI
                {
                   matchFound = 1;              
                }
-               //The first piece is included in the four count so this is how i account for it.               int matchFound = 1; 
+               //The first piece is included in the four count so this is how i account for it.               
                //Checks the horizontal positions to the left
                for(int i = currentCol-1; i>=currentCol-3; i--)
                {
+                  if(i<0){
+                     break;
+                  }
                   //It will compare the currentPieces as it goes through the horizontal positions, incrementing matchFound each time if they are the same color 
                   if(currentPiece.equals(gamePlay[currentRow][i]))
                   {
@@ -750,9 +757,11 @@ public class MainGUI
                                                  
             }                       
             //Catches an ArrayIndexOutOfBoundsException
-            catch(ArrayIndexOutOfBoundsException e){}       
+            catch(ArrayIndexOutOfBoundsException e){
+               e.printStackTrace();
+            }       
             return foundWinner;
-         }
+         
       }
       
       /*
