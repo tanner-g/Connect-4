@@ -12,8 +12,8 @@ import java.util.*;
 import java.awt.event.*;
 
 /*
- * A class that extends JFrame and implements ActionListener that will create a GUI for the user 
- * to input the names of the two players playing.
+ * The PlayerChoice class creates a GUI for the user to enter their names into the game. After the user enters player one and two's name,
+ *    it creates a MainGUI object in order to start the game.
  */
 public class PlayerChoice extends JFrame implements ActionListener
 {
@@ -39,7 +39,7 @@ public class PlayerChoice extends JFrame implements ActionListener
    private String playerOneEntered;
    private String playerTwoEntered;
    
-   //Main method
+   //PlayerChoice's main method
    public static void main(String [] args)
    {
       //Creates a new PlayerChoice object
@@ -47,7 +47,7 @@ public class PlayerChoice extends JFrame implements ActionListener
    } 
    
    /*
-    * The default constructor that will create the GUI for the PlayerChoice class. It will create a frame that will
+    * The default constructor creates the GUI for the PlayerChoice class. It will create a frame that will
     * have two panels added to it. These panels will contain JLabel and TextField objects that will allow
     * the user to input their name into either player one or two and a JButton that will allow the user 
     * accept the players, enter them, and start the game. 
@@ -106,8 +106,8 @@ public class PlayerChoice extends JFrame implements ActionListener
    } 
    
    /*
-    * Void method that is to listen to the JButton, then in return, perform
-    * a certain action.
+    * The actionPerformed() method listens for a call to the JButton Action Listener, then in return, performs
+    *       a certain action.
     * @param ActionEvent ae Allows the action command to be performed 
     */    
    public void actionPerformed(ActionEvent ae)

@@ -1,7 +1,8 @@
 /*
  * @authors Tanner Glantz and Brett Phillips
  * @version 03/14/2016
- * Description: The StartUp class creates the start menu of the game.
+ * Description: The StartUp class creates the start menu of the game. This class should be the only java file ran by the user
+ *              because it will call the PlayerChoice.java file which will then call the MainGUI.java.
  * Course: ISTE-121
  */
 
@@ -12,8 +13,8 @@ import java.util.*;
 import java.awt.event.*;
 
 /*
- * A class that extends JFrame and implements ActionListener that will create a GUI menu for the user 
- * to press start when the would like to begin the game.
+ * The startup class creates a GUI menu for the user to start the Connect 5 Start Menu
+ * The user must press start when to start the game.
  */
 public class StartUp extends JFrame implements ActionListener
 {
@@ -28,7 +29,7 @@ public class StartUp extends JFrame implements ActionListener
    private JPanel panelTwo = null;
    private Icon aPic = new ImageIcon("startup.jpg");
       
-   //Main method
+   //Startup's main method
    public static void main(String [] args)
    {
       //Creates a new StartUp object
@@ -36,7 +37,7 @@ public class StartUp extends JFrame implements ActionListener
    }
    
    /*
-    * A default constructor that will create the GUI for the StartUp class. It will create a frame that will
+    * The default constructor that will create the GUI for the StartUp class. It will create a frame that will
     * have two panels added to it. These panels will contain an Icon object to display an image
     * and a JButton that will allow the user to start the game. 
     */
@@ -78,20 +79,17 @@ public class StartUp extends JFrame implements ActionListener
    }
    
    /*
-    * An inner class that extends a JPanel. This class will create an image and paint it 
-    * it to the panel, so that it can be added to the frame in the main class. 
+    * Starup's inner class called Startupinner creates an image and paints it
+    *       it to the panel, so that it can be added to the frame in the 
+    *       main class. 
     */
    class StartUpInner extends JPanel
    {
-      //Empty default constructor
-      public StartUpInner()
-      {
-      }
       
       /*
-       * Void paintComponent method that will take in the Graphics g parameter in order to paint the 
-       * image to the panel at a certian location.
-       * @param Graphics g
+       * The paintComponent() method accepts the Graphics g parameter in order to paint the 
+       * image to the panel at a specified location.
+       * @param Graphics g 
        */
       protected void paintComponent(Graphics g)
       {
@@ -103,8 +101,7 @@ public class StartUp extends JFrame implements ActionListener
    }
    
    /*
-    * Void method that is to listen to the JButton, then in return, perform
-    * a certain action.
+    * The actoinPerformed() method listens for a call from the JButton's Action Listener in order to tell when a button is pressed.
     * @param ActionEvent ae Allows the action command to be performed 
     */    
    public void actionPerformed(ActionEvent ae)
