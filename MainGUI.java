@@ -1,7 +1,9 @@
 /*
  * @authors Tanner Glantz and Brett Phillips
  * @version 03/14/2016
- * Description: The MainGUI class creates the Connect 4 game board and allows the pieces to be put on the board.
+ * Description: The MainGUI class creates the Connect 4 game board with the names entered in PlayerChoice. It then keeps
+ *              track of wins, checks to make sure that player moves are valid and upon a win displays the winner to the
+ *              user via a JOptionPane.
  * Course: ISTE-121
  */
 
@@ -13,9 +15,9 @@ import java.io.*;
 import java.util.*;
 
 /*
- * A class that will will create the game board and load the pieces. 
- * Players will then be able to take turns placing their chips on 
- * the game board by pressing the respective buttons 1-7.
+ * The MainGUI class creates the game board and loads the pieces into the JFrame. 
+ *       Players will then be able to take turns placing their chips on 
+ *       the game board by pressing the respective buttons 1-7.
  */
 public class MainGUI
 {
@@ -97,11 +99,11 @@ public class MainGUI
        {"e","e","e","e","e","e","e"}};   
   
    /*
-    * Default Constructor that creates a JFrame and adds a menu bar that contains
-    * menu items to the north of the frame. It creates a new board (inner class) object
-    * that places the image of the board to the center of the screen. Lastly, It creates
-    * JLabels on the south of the screen to show the players playing and the number of
-    * wins for each player.
+    * MainGUI's default constructor creates a JFrame and adds a menu bar that contains
+    *       menu items to the north of the frame. It creates a new board (inner class) object
+    *       that places the image of the board to the center of the screen. Lastly, It creates
+    *       JLabels on the south of the screen to show the players playing and the number of
+    *       wins for each player.
     * @param String _playerOne Takes in the name of player one so that it can be placed on the bottom of the frame
     * @param String _playerTwo Takes in the name of player two so that it can be placed on the bottom of the frame
     */
@@ -242,7 +244,7 @@ public class MainGUI
    }
    
    /*
-    * Void method that is to determine which color's turn it is, so that
+    * setColorChip() method that is to determine which color's turn it is, so that
     * the user or player can place their respective chip.
     */    
    public void setColorChip()
@@ -278,14 +280,14 @@ public class MainGUI
       }
    }
    
-   //Main method
+   //MainGUI's main method
    public static void main(String[] args)
    {
       MainGUI game = new MainGUI(finalPlayerOne, finalPlayerTwo);
    }
 
    /*
-    * Void method that will terminate the program
+    * exitProgram() method terminates the program
     */
    public void exitProgram()
    {
@@ -293,8 +295,8 @@ public class MainGUI
    }
  
    /*
-    * Inner class that extends JPanel and implements action listener. Its function is to listen to the buttons
-    * and, if they are pressed, place the chip in its respective column.
+    * The Board Inner class that extends JPanel and implements action listener. Its function is to listen to the buttons
+    *       and, if they are pressed, place the chip in its respective column.
     */
    class Board extends JPanel implements ActionListener
    {
@@ -324,7 +326,7 @@ public class MainGUI
       private int currentColumn = 0;
       
       /*
-       * Void method that will reset the entire board and start a new game.
+       * resetBoard() method resets the entire board and start a new game.
        */
       public void resetBoard()
       {
@@ -353,7 +355,7 @@ public class MainGUI
       }
           
       /*
-       * Void method that is to listen to the JButtons, then in return, perform
+       * The actionPerformed() method that is to listen to the JButtons, then in return, perform
        * a certain action.
        * @param ActionEvent ae Allows the action command to be performed 
        */          
@@ -662,7 +664,7 @@ public class MainGUI
       }
     
      /* 
-      * boolean method that checks all of the possible win cases on the piece that was placed.
+      * The findWinner() method that checks all of the possible win cases on the piece that was placed.
       * @param currentRow are the current pieces position that will be checked to see if there is four in a row.
       * @param currentCol are the current pieces position that will be checked to see if there is four in a row.
       */
@@ -812,8 +814,8 @@ public class MainGUI
       }
       
       /*
-       * Void method that will paint the pieces onto the board after the user
-       * pushes the button for the respective column.
+       * The paintPieces() method that will paint the pieces onto the board after the user
+       *       pushes the button for the respective column.
        */
       public void paintPieces(Graphics g)
       {
@@ -848,8 +850,8 @@ public class MainGUI
       }  
       
       /*
-       * Void method that will paint the board on the screen and print the dialog box 
-       * when a winner is found.
+       * The paintComponent() method that will paint the board on the screen and print the dialog box 
+       *       when a winner is found.
        */
       protected void paintComponent(Graphics g) 
       {             
@@ -890,11 +892,11 @@ public class MainGUI
                colButton5.setEnabled(false);
                colButton6.setEnabled(false);
                colButton7.setEnabled(false);
-               
+               //resets the board
                resetBoard();
             }
          }
-         
+         //stops the game
          keepGoing = true;
       }          
    }
