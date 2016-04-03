@@ -1,3 +1,5 @@
+#ignores all of the class files
+*.class
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
