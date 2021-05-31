@@ -1,3 +1,3 @@
 # Connect-4
 
-Created by @tanner-glantz and @brettephillips
+Created by @tanner-g and @brettephillips
